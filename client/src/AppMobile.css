@@ -1,0 +1,136 @@
+.navbar-brand-in-details--m{
+  margin: 25px 25px!important;
+  font-size: 25px!important;
+}
+
+.detailsModalCancelDiv--m{
+  padding: 20px 20px!important;
+}
+
+.navbar--m{
+  padding: 15px 25px!important;
+}
+
+.navbar-toggler--m{
+  height: 35px!important;
+  width: 35px!important;
+  padding: 0px 0px!important;
+}
+
+.navbar-toggler-icon--m{
+  height: 20px!important;
+  width: 20px!important;
+}
+
+.textDia--m{
+  font-size: 40px!important;
+}
+
+.brandDescription--m{
+  font-size: 11px!important;
+}
+
+.hero-wrap--m{
+  height: 550px!important;
+}
+
+.hero-wrap--m:after{
+  height: 60px!important;
+  transform: skewY(-8deg)!important;
+}
+
+.hero-wrap--m:before{
+  height: 60px!important;
+  transform: skewY(8deg)!important;
+}
+
+.overlay--m{
+  height: 550px!important;
+}
+
+.backgr--m{
+  height: 100%!important;
+  width: 140%!important;
+}
+
+.stickyTab--m.nav-link{
+  padding: .5rem 3%!important;
+}
+
+.subheading--m{
+  font-size: 18px!important;
+}
+
+.cardStyle--m{
+  height: 150px!important;
+  width: 150px!important;
+  margin: 7px!important;
+  border-radius: 7px!important;
+}
+
+.cardStyle--m.loaded{
+  box-shadow: 0 6px 6px 0 rgba(0,0,0,.6)!important;
+}
+
+.cardStyle--m.loaded:hover {
+  transform: translateY(-5px) scale(1.02)!important;
+  box-shadow: 0 1rem 1.1rem 0 rgba(0,0,0,.7)!important;
+}
+
+.card-image--m{
+  height: 150px!important;
+  width: 150px!important;
+  border-radius: 7px!important;
+}
+
+.card-info--m{
+  height: 20px!important;
+}
+
+.card-info-name--m{
+  font-size: 11px!important;
+  padding: 2px 20px 2px!important;
+}
+
+.card-features-button--m{
+  height: 90px!important;
+  width: 90px!important;
+  margin: 30px 30px!important;
+  padding: 35px 5px!important;
+  font-size: 11px!important;
+  user-select: none!important;
+}
+
+.timelineHeader--m{
+  font-size: 18px!important;
+}
+
+.timelineMatter--m{
+  font-size: 11px!important;
+}
+
+.timelineInfo--m{
+  font-size: 16px!important;
+  user-select: auto!important;
+}
+
+.footer__col-title--m{
+  font-size: 20px!important;
+}
+
+.timeliner--m{
+  padding: 20px 0 100px 0!important;
+}
+
+.authBordered--m{
+}
+
+.tempImgDiv--m{
+  height: 235px!important;
+  width: 220px!important;
+}
+
+.tempImg--m{
+  height: 220px!important;
+  width: 220px!important;
+}
