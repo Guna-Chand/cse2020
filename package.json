@@ -17,8 +17,8 @@
     "crypto-js": "^4.0.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
+    "googleapis": "^52.1.0",
     "mongoose": "^5.9.9",
-    "nodemailer": "^6.4.6",
-    "smtp": "^0.1.4"
+    "nodemailer": "^6.4.6"
   }
 }

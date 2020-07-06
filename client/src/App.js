@@ -1070,7 +1070,7 @@ class App extends React.Component{
                         </div>
                         <div className="modal-body">
                           <div className = "approvalDescription">
-                            <strong>Approval to display your phone number in this application.</strong><br/>
+                            <strong>Approval to display your phone number in this app.</strong><br/>
                             This approval will help our classmates to stay connected using your phone number.
                           </div>
                           <form id = "otpEmailForm" onSubmit = {this.requestOTP}>
@@ -1675,7 +1675,7 @@ class App extends React.Component{
                               <FaCode size = "30px" className = "brandIcon"/>CSE 2020
                             </div>
                             <p className="footer__slogan">
-                              This application helps you
+                              This app helps you
                               <strong> Find and reconnect with B.Tech classmates.</strong><br/>
                               This app will have your back when you wanna see the faces of our classmates or reconnect with them, providing you with their pictures and contact details.<br/>
                               <strong>* </strong>If Heroku and MongoDB don't remove their free plans, this app will exist forever. And if i ever update this app to a paid custom domain, i'll let you guys know.<br/>
@@ -1979,7 +1979,7 @@ class App extends React.Component{
                         </div>
                         <div className="modal-body">
                           <div className = "approvalDescription">
-                            <strong>Approval to display your phone number in this application.</strong><br/>
+                            <strong>Approval to display your phone number in this app.</strong><br/>
                             This approval will help our classmates to stay connected using your phone number.
                           </div>
                           <form id = "otpEmailForm" onSubmit = {this.requestOTP}>
@@ -2584,7 +2584,7 @@ class App extends React.Component{
                               <FaCode size = "30px" className = "brandIcon"/>CSE 2020
                             </div>
                             <p className="footer__slogan">
-                              This application helps you
+                              This app helps you
                               <strong> Find and reconnect with B.Tech classmates.</strong><br/>
                               This app will have your back when you wanna see the faces of our classmates or reconnect with them, providing you with their pictures and contact details.<br/>
                               <strong>* </strong>If Heroku and MongoDB don't remove their free plans, this app will exist forever. And if i ever update this app to a paid custom domain, i'll let you guys know.<br/>

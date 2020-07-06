@@ -6,20 +6,48 @@ const mongoose  = require('mongoose');
 const SHA512 = require("crypto-js/sha512");
 const Schema  = mongoose.Schema;
 const bodyParser = require('body-parser');
+// const mailjet = require('node-mailjet').connect('21674a3b39d8679b91b3bf9d40886382', 'f636168d3f0de2daf5dfe59344f81864');
 const nodemailer = require('nodemailer');
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  type: "SMTP",
-  host: "smtp.gmail.com",
-  secure: true,
-  auth: {
-      user: 'vrsec2020@gmail.com',
-      pass: 'timeandspace'
-  }
+const oauth2Client = new OAuth2(
+     "849837108179-m1ljldv5hu41sbjp7j3tpkrng4u721gq.apps.googleusercontent.com", // ClientID
+     "iN_-qfoLB0lQKOEGfQoUasdD", // Client Secret
+     "https://developers.google.com/oauthplayground" // Redirect URL
+);
+
+oauth2Client.setCredentials({
+     refresh_token: "1//04e2R3G-TMs_6CgYIARAAGAQSNwF-L9IrnWU9edl0g4o7LlfH24Zm0lM-w_GDmdGr2_2BJmpdd0P0xcKu2DCq3UX_5DhsWZKEVds"
 });
+
+const accessToken = oauth2Client.getAccessToken();
+
+const transporter = nodemailer.createTransport({
+   service: "gmail",
+   auth: {
+        type: "OAuth2",
+        user: "vrsec2020@gmail.com",
+        clientId: "849837108179-m1ljldv5hu41sbjp7j3tpkrng4u721gq.apps.googleusercontent.com",
+        clientSecret: "iN_-qfoLB0lQKOEGfQoUasdD",
+        refreshToken: "1//04e2R3G-TMs_6CgYIARAAGAQSNwF-L9IrnWU9edl0g4o7LlfH24Zm0lM-w_GDmdGr2_2BJmpdd0P0xcKu2DCq3UX_5DhsWZKEVds",
+        accessToken: accessToken
+   }
+});
+
+
+// const transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   type: "SMTP",
+//   host: "smtp.gmail.com",
+//   secure: true,
+//   auth: {
+//       user: 'vrsec2020@gmail.com',
+//       pass: 'timeandspace'
+//   }
+// });
 
 const visitSchema = new Schema({
   inde : Number,
@@ -394,10 +422,12 @@ app.post('/requestOTP', (req, res) => {
         if(resu[0].approval === true){
           res.send([0 , 'Your email is already approved!']);
         }else{
+
           let mailData = {
             from: 'vrsec2020@gmail.com',
             to: resu[0].email,
-            subject: 'OTP for approval of details - CSE2020',
+            subject: 'OTP - CSE2020',
+            generateTextFromHTML: true,
             html: `<div>Thanks for requesting to display your phone number <strong>${resu[0].pno}</strong> in CSE2020 app.<br/><br/>Your OTP is: <br/><h1>${resu[0].otp}</h1><br/><br/>Thank you,<br/>CSE2020</div>`
           };
           transporter.sendMail(mailData, (err, info) => {
@@ -410,6 +440,40 @@ app.post('/requestOTP', (req, res) => {
               res.send([1, 'OTP sent successfully. Check you mail and enter the OTP here. Enter the 5 digits to enable the Submit OTP button']);
             }
           });
+          // const request = mailjet
+          //   .post("send", {'version': 'v3.1'})
+          //   .request({
+          //     "Messages":[
+          //       {
+          //         "From": {
+          //           "Email": "vrsec2020@gmail.com",
+          //           "Name": "VRSEC"
+          //         },
+          //         "To": [
+          //           {
+          //             "Email": resu[0].email,
+          //             "Name": "VRSEC"
+          //           }
+          //         ],
+          //         "Subject": "OTP - CSE2020",
+          //         "TextPart": "My first Mailjet email",
+          //         "HTMLPart": `<div>Thanks for requesting to display your phone number <strong>${resu[0].pno}</strong> in CSE2020 app.<br/><br/>Your OTP is: <br/><h1>${resu[0].otp}</h1><br/><br/>Thank you,<br/>CSE2020</div>`,
+          //         "CustomID": "OTP"
+          //       }
+          //     ]
+          //   });
+          //
+          // request
+          //   .then((result) => {
+          //     console.log(result.body)
+          //     res.send([1, 'OTP sent successfully. Check you mail and enter the OTP here. Enter the 5 digits to enable the Submit OTP button']);
+          //   })
+          //   .catch((err) => {
+          //     console.log(err.statusCode);
+          //     res.send([0 , 'An error occured at the server while sending the mail. Please contact admin.']);
+          //   });
+
+
         }
       }
     }
@@ -440,6 +504,7 @@ app.post('/verifyOTP', (req, res) => {
           from: 'vrsec2020@gmail.com',
           to: resu[0].email,
           subject: 'OTP verification Successful - CSE 2020',
+          generateTextFromHTML: true,
           html: `<div>OTP verification successful. Your phone number is now made public within the app.<br/><br/>Thank you,<br/>CSE2020</div>`
         };
         transporter.sendMail(mailData, (err, info) => {
