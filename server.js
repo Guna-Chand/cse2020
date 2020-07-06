@@ -11,11 +11,14 @@ const nodemailer = require('nodemailer');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    auth: {
-        user: 'vrsec2020@gmail.com',
-        pass: 'timeandspace'
-    }
+  service: 'gmail',
+  type: "SMTP",
+  host: "smtp.gmail.com",
+  secure: true,
+  auth: {
+      user: 'vrsec2020@gmail.com',
+      pass: 'timeandspace'
+  }
 });
 
 const visitSchema = new Schema({
@@ -383,7 +386,7 @@ app.post('/requestOTP', (req, res) => {
   studentDoc.find({ email : email }).then(resu => {
     // console.log(resu);
     if(resu.length === 0){
-      res.send([0 , 'Email not found in the database! Please check the email you\'ve given by clicking on your picture in this application.']);
+      res.send([0 , 'Email not found in the database! Please check the email you\'ve given by clicking on your picture in this app.']);
     }else{
       if(resu[0].otp === undefined){
         res.send([0 , 'Staff emails don\'t require verification']);
@@ -395,7 +398,7 @@ app.post('/requestOTP', (req, res) => {
             from: 'vrsec2020@gmail.com',
             to: resu[0].email,
             subject: 'OTP for approval of details - CSE2020',
-            html: `<div>Thanks for approving to display your phone number <strong>${resu[0].pno}</strong> in CSE2020 application.<br/><br/>Your OTP is: <br/><h1>${resu[0].otp}</h1><br/><br/>Thank you,<br/>CSE2020</div>`
+            html: `<div>Thanks for requesting to display your phone number <strong>${resu[0].pno}</strong> in CSE2020 app.<br/><br/>Your OTP is: <br/><h1>${resu[0].otp}</h1><br/><br/>Thank you,<br/>CSE2020</div>`
           };
           transporter.sendMail(mailData, (err, info) => {
             if(err){
