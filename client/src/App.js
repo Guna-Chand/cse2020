@@ -1189,7 +1189,7 @@ class App extends React.Component{
                             <div className = "brandDescription brandDescription--m">
                               <div><FaGraduationCap/>Graduation is an exciting time. It's both an ending and a beginning.</div>
                               <div>It's warm memories of the past and big dreams for the future.</div>
-                              <div style = {{'color' : 'white'}}>Thanks for the truckload of goodtimes.</div>
+                              <div style = {{'color' : 'white'}}>Thanks for the truckload of good times.</div>
                             </div>
                          </Fade>
                        </div>
@@ -1542,7 +1542,7 @@ class App extends React.Component{
                                 <div className = "detailsModalRno">{this.state.detailsModalRno}</div>
                                 <div>
                                   <MdCall className = "modalIcon" /> &nbsp;&nbsp;
-                                  <a className = "modalDetail modalHref" href={'tel:' + this.state.detailsModalPno}>{this.state.detailsModalPno}</a>
+                                  <a className = "modalDetail modalHref modalPno" href={'tel:' + this.state.detailsModalPno}>{this.state.detailsModalPno}</a>
                                 </div>
                                 <div>
                                   <MdEmail className = "modalIcon" /> &nbsp;&nbsp;
@@ -1647,7 +1647,7 @@ class App extends React.Component{
                         <Fade right>
                           <div className="timelineContent">
                             <div className = "timelineHeader timelineHeader--m timelineEnd">The End</div>
-                            <p className = "timelineMatter timelineMatter--m">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down(22nd March 2020) else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.</p>
+                            <p className = "timelineMatter timelineMatter--m">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down since 22nd March 2020, else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.</p>
                           </div>
                         </Fade>
                       </div>
@@ -1678,7 +1678,7 @@ class App extends React.Component{
                               This app helps you
                               <strong> Find and reconnect with B.Tech classmates.</strong><br/>
                               This app will have your back when you wanna see the faces of our classmates or reconnect with them, providing you with their pictures and contact details.<br/>
-                              <strong>* </strong>If Heroku and MongoDB don't remove their free plans, this app will exist forever. And if i ever update this app to a paid custom domain, i'll let you guys know.<br/>
+                            <strong>* </strong>If Heroku and MongoDB doesn't remove their free plans, this app will exist forever. And if i ever update this app to a paid custom domain, i'll let you guys know.<br/>
                             </p>
                           </section>
                           <section className="footer__col background--active">
@@ -2098,7 +2098,7 @@ class App extends React.Component{
                             <div className = "brandDescription">
                               <div><FaGraduationCap/>Graduation is an exciting time. It's both an ending and a beginning.</div>
                               <div>It's warm memories of the past and big dreams for the future.</div>
-                              <div style = {{'color' : 'white'}}>Thanks for the truckload of goodtimes.</div>
+                              <div style = {{'color' : 'white'}}>Thanks for the truckload of good times.</div>
                             </div>
                          </Fade>
                        </div>
@@ -2451,7 +2451,7 @@ class App extends React.Component{
                                 <div className = "detailsModalRno">{this.state.detailsModalRno}</div>
                                 <div>
                                   <MdCall className = "modalIcon" /> &nbsp;&nbsp;
-                                  <a className = "modalDetail modalHref" href={'tel:' + this.state.detailsModalPno}>{this.state.detailsModalPno}</a>
+                                  <a className = "modalDetail modalHref modalPno" href={'tel:' + this.state.detailsModalPno}>{this.state.detailsModalPno}</a>
                                 </div>
                                 <div>
                                   <MdEmail className = "modalIcon" /> &nbsp;&nbsp;
@@ -2556,7 +2556,7 @@ class App extends React.Component{
                         <Fade right>
                           <div className="timelineContent">
                             <div className = "timelineHeader timelineEnd">The End</div>
-                            <p className = "timelineMatter">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down(22nd March 2020) else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.</p>
+                            <p className = "timelineMatter">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down since 22nd March 2020, else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.</p>
                           </div>
                         </Fade>
                       </div>
@@ -2587,7 +2587,7 @@ class App extends React.Component{
                               This app helps you
                               <strong> Find and reconnect with B.Tech classmates.</strong><br/>
                               This app will have your back when you wanna see the faces of our classmates or reconnect with them, providing you with their pictures and contact details.<br/>
-                              <strong>* </strong>If Heroku and MongoDB don't remove their free plans, this app will exist forever. And if i ever update this app to a paid custom domain, i'll let you guys know.<br/>
+                            <strong>* </strong>If Heroku and MongoDB doesn't remove their free plans, this app will exist forever. And if i ever update this app to a paid custom domain, i'll let you guys know.<br/>
                             </p>
                           </section>
                           <section className="footer__col background--active">

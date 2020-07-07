@@ -734,6 +734,10 @@
   text-transform: lowercase;
 }
 
+.modalPno{
+  text-transform: capitalize!important;
+}
+
 .cardStyleHighlight{
   position: absolute!important;
   height: 100%;
