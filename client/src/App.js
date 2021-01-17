@@ -1638,7 +1638,7 @@ class App extends React.Component{
                               8 Semesters<br/>
                               <i>Each semester :</i><br/>
                               4 Internal Exams(2 Assignments, 2 Sessionals)<br/>
-                              1 External Exam
+                              1 Semester End Exams
                             </p>
                           </div>
                         </Fade>
@@ -1647,7 +1647,9 @@ class App extends React.Component{
                         <Fade right>
                           <div className="timelineContent">
                             <div className = "timelineHeader timelineHeader--m timelineEnd">The End</div>
-                            <p className = "timelineMatter timelineMatter--m">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down since 22nd March 2020, else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.</p>
+                            <p className = "timelineMatter timelineMatter--m">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down since 22nd March 2020, else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.<br/><br/>
+                              <strong>Update : </strong>Finally we completed our final exams on 18th Sep 2020. And the official date of leaving the college is 30th Nov 2020 as per TC.
+                            </p>
                           </div>
                         </Fade>
                       </div>
@@ -2547,7 +2549,7 @@ class App extends React.Component{
                               8 Semesters<br/>
                               <i>Each semester :</i><br/>
                               4 Internal Exams(2 Assignments, 2 Sessionals)<br/>
-                              1 External Exam
+                              1 Semester End Exams
                             </p>
                           </div>
                         </Fade>
@@ -2556,7 +2558,9 @@ class App extends React.Component{
                         <Fade right>
                           <div className="timelineContent">
                             <div className = "timelineHeader timelineEnd">The End</div>
-                            <p className = "timelineMatter">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down since 22nd March 2020, else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.</p>
+                            <p className = "timelineMatter">We have the most unexpected ending. Corona Virus became a major threat for the entire world and the whole country has been locked down since 22nd March 2020, else we would've completed our final exams by 11th April 2020. I'll update the date of our graduation when things fall in place.<br/><br/>
+                              <strong>Update : </strong>Finally we completed our final exams on 18th Sep 2020. And the official date of leaving the college is 30th Nov 2020 as per TC.
+                            </p>
                           </div>
                         </Fade>
                       </div>
