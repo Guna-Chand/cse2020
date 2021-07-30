@@ -1,204 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Digital album for VRSEC CSE 2016-2020 batch"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="pixelarity.css" crossorigin="anonymous">
-    <style type="text/css">
-      body{
-        height:100%;
-        margin:0;
-        padding:0;
-        width:100%;
-        font-family:Roboto,sans-serif;
-        font-size:13px;
-        -webkit-font-smoothing:antialiased;
-        }
 
-      .ipl-progress-indicator.available{
-        opacity:1;
-        }
-      .ipl-progress-indicator{
-        background-color:#f5f5f5;
-        width:100%;
-        height:100%;
-        position:fixed;
-        opacity:1;
-        pointer-events:none;
-        -webkit-transition:opacity cubic-bezier(.4,0,.2,1) 436ms;
-        -moz-transition:opacity cubic-bezier(.4,0,.2,1) 436ms;
-        transition:opacity cubic-bezier(.4,0,.2,1) 436ms;
-        z-index:9999;
-        }
-      .insp-logo-frame{
-        display:-webkit-flex;
-        display:-moz-flex;
-        display:flex;
-        -webkit-flex-direction:column;
-        -moz-flex-direction:column;
-        flex-direction:column;
-        -webkit-justify-content:center;
-        -moz-justify-content:center;
-        justify-content:center;
-        -webkit-animation:fadein 436ms;
-        -moz-animation:fadein 436ms;
-        animation:fadein 436ms;
-        height:98%
-        }
-      .insp-logo-frame-img{
-        width:112px;
-        height:112px;
-        -webkit-align-self:center;
-        -moz-align-self:center;
-        align-self:center;
-        border-radius:50%
-        }
-      .ipl-progress-indicator-head{
-        background-color:#c6dafc;
-        height:4px;
-        overflow:hidden;
-        position:relative
-        }
-      .ipl-progress-indicator .first-indicator,.ipl-progress-indicator .second-indicator{
-        background-color:#056d8b;
-        bottom:0;
-        left:0;
-        right:0;
-        top:0;
-        position:absolute;
-        -webkit-transform-origin:left center;
-        -moz-transform-origin:left center;
-        transform-origin:left center;
-        -webkit-transform:scaleX(0);
-        -moz-transform:scaleX(0);
-        transform:scaleX(0)
-        }
-      .ipl-progress-indicator .first-indicator{
-        -webkit-animation:first-indicator 2s linear infinite;
-        -moz-animation:first-indicator 2s linear infinite;
-        animation:first-indicator 2s linear infinite
-        }
-      .ipl-progress-indicator .second-indicator{
-        -webkit-animation:second-indicator 2s linear infinite;
-        -moz-animation:second-indicator 2s linear infinite;
-        animation:second-indicator 2s linear infinite
-        }
-      .ipl-progress-indicator .insp-logo{
-        animation:App-logo-spin infinite 20s linear;
-        border-radius:50%;
-        -webkit-align-self:center;
-        -moz-align-self:center;
-        align-self:center
-        }
-      @keyframes App-logo-spin{
-        from{
-          transform:rotate(0)
-          }
-        to{
-          transform:rotate(360deg)
-          }
-        }
-      @-webkit-keyframes fadein{
-        from{
-          opacity:0
-          }
-        to{
-          opacity:1
-          }
-        }
-      @-moz-keyframes fadein{
-        from{
-          opacity:0
-          }
-        to{
-          opacity:1
-          }
-        }
-      @keyframes fadein{
-        from{
-          opacity:0;
-          }
-        to{
-          opacity:1;
-          }
-        }
-      @keyframes first-indicator{
-        0%{
-          transform:translate(0) scaleX(0);
-          }
-        25%{
-          transform:translate(0) scaleX(.5);
-          }
-        50%{
-          transform:translate(25%) scaleX(.75);
-          }
-        75%{
-          transform:translate(100%) scaleX(0);
-          }
-        100%{
-          transform:translate(100%) scaleX(0);
-          }
-        }
-      @keyframes second-indicator{
-        0%{
-          transform:translate(0) scaleX(0);
-          }
-        60%{
-          transform:translate(0) scaleX(0);
-          }
-        80%{
-          transform:translate(0) scaleX(.6);
-          }
-        100%{
-          transform:translate(100%) scaleX(.1);
-          }
-        }
-    </style>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+  <meta name="author" content="Guna Chand Dakavarapu" />
+  <meta name="keywords"
+    content="vrsec, cse, cse2020, cse 2020, vr siddhartha, class of 2020, digital album, souvenir, velagapudi ramakrishna siddhartha engineering college" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Digital album for VRSEC CSE 2016-2020 batch" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="pixelarity.css" crossorigin="anonymous">
+  <style type="text/css">
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      font-family: Roboto, sans-serif;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    <title>CSE 2020</title>
-  </head>
-  <body class = "body" id = "body">
-    <div id="root">
-      <div class="ipl-progress-indicator" id="ipl-progress-indicator">
-        <div class="ipl-progress-indicator-head">
-          <div class="first-indicator"></div>
-          <div class="second-indicator"></div>
-        </div>
-        <div class="insp-logo-frame">
-          <svg class="insp-logo-frame-img" version="1.1" id="L3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
-            <filter id="code" x="0%" y="0%" width="100%" height="100%">
-                <feImage xlink:href="favicon.png"/>
-            </filter>
-            <circle filter="url(#code)" stroke="#fff" stroke-width="4" cx="50" cy="50" r="44" style="opacity:0.5;"/>
-            <circle fill="#000" stroke="none" stroke-width="3" cx="8" cy="54" r="2.5" >
-              <animateTransform
-                attributeName="transform"
-                dur="1s"
-                type="rotate"
-                from="0 52 48"
-                to="360 50 52"
-                repeatCount="indefinite" />
-            </circle>
-          </svg>
-        </div>
+    .ipl-progress-indicator.available {
+      opacity: 1;
+    }
+
+    .ipl-progress-indicator {
+      background-color: #f5f5f5;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      opacity: 1;
+      pointer-events: none;
+      -webkit-transition: opacity cubic-bezier(.4, 0, .2, 1) 436ms;
+      -moz-transition: opacity cubic-bezier(.4, 0, .2, 1) 436ms;
+      transition: opacity cubic-bezier(.4, 0, .2, 1) 436ms;
+      z-index: 9999;
+    }
+
+    .insp-logo-frame {
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      -moz-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: center;
+      -moz-justify-content: center;
+      justify-content: center;
+      -webkit-animation: fadein 436ms;
+      -moz-animation: fadein 436ms;
+      animation: fadein 436ms;
+      height: 98%
+    }
+
+    .insp-logo-frame-img {
+      width: 112px;
+      height: 112px;
+      -webkit-align-self: center;
+      -moz-align-self: center;
+      align-self: center;
+      border-radius: 50%
+    }
+
+    .ipl-progress-indicator-head {
+      background-color: #c6dafc;
+      height: 4px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .ipl-progress-indicator .first-indicator,
+    .ipl-progress-indicator .second-indicator {
+      background-color: #056d8b;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      position: absolute;
+      -webkit-transform-origin: left center;
+      -moz-transform-origin: left center;
+      transform-origin: left center;
+      -webkit-transform: scaleX(0);
+      -moz-transform: scaleX(0);
+      transform: scaleX(0)
+    }
+
+    .ipl-progress-indicator .first-indicator {
+      -webkit-animation: first-indicator 2s linear infinite;
+      -moz-animation: first-indicator 2s linear infinite;
+      animation: first-indicator 2s linear infinite
+    }
+
+    .ipl-progress-indicator .second-indicator {
+      -webkit-animation: second-indicator 2s linear infinite;
+      -moz-animation: second-indicator 2s linear infinite;
+      animation: second-indicator 2s linear infinite
+    }
+
+    .ipl-progress-indicator .insp-logo {
+      animation: App-logo-spin infinite 20s linear;
+      border-radius: 50%;
+      -webkit-align-self: center;
+      -moz-align-self: center;
+      align-self: center
+    }
+
+    @keyframes App-logo-spin {
+      from {
+        transform: rotate(0)
+      }
+
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @-webkit-keyframes fadein {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @-moz-keyframes fadein {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes first-indicator {
+      0% {
+        transform: translate(0) scaleX(0);
+      }
+
+      25% {
+        transform: translate(0) scaleX(.5);
+      }
+
+      50% {
+        transform: translate(25%) scaleX(.75);
+      }
+
+      75% {
+        transform: translate(100%) scaleX(0);
+      }
+
+      100% {
+        transform: translate(100%) scaleX(0);
+      }
+    }
+
+    @keyframes second-indicator {
+      0% {
+        transform: translate(0) scaleX(0);
+      }
+
+      60% {
+        transform: translate(0) scaleX(0);
+      }
+
+      80% {
+        transform: translate(0) scaleX(.6);
+      }
+
+      100% {
+        transform: translate(100%) scaleX(.1);
+      }
+    }
+  </style>
+
+  <title>CSE 2020</title>
+</head>
+
+<body class="body" id="body">
+  <div id="root">
+    <div class="ipl-progress-indicator" id="ipl-progress-indicator">
+      <div class="ipl-progress-indicator-head">
+        <div class="first-indicator"></div>
+        <div class="second-indicator"></div>
+      </div>
+      <div class="insp-logo-frame">
+        <svg class="insp-logo-frame-img" version="1.1" id="L3" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100"
+          enable-background="new 0 0 0 0" xml:space="preserve">
+          <filter id="code" x="0%" y="0%" width="100%" height="100%">
+            <feImage xlink:href="favicon.png" />
+          </filter>
+          <circle filter="url(#code)" stroke="#fff" stroke-width="4" cx="50" cy="50" r="44" style="opacity:0.5;" />
+          <circle fill="#000" stroke="none" stroke-width="3" cx="8" cy="54" r="2.5">
+            <animateTransform attributeName="transform" dur="1s" type="rotate" from="0 52 48" to="360 50 52"
+              repeatCount="indefinite" />
+          </circle>
+        </svg>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src="pixelarity-faceless.js"></script>
-  </body>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="pixelarity-faceless.js"></script>
+</body>
+
 </html>

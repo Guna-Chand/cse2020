@@ -9,7 +9,7 @@
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "author": "",
+  "author": "Guna Chand Dakavarapu",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
     "googleapis": "^52.1.0",
-    "mongoose": "^5.9.9",
-    "nodemailer": "^6.4.6"
+    "mongoose": "^5.13.4",
+    "nodemailer": "^6.6.3"
   }
 }
