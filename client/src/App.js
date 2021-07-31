@@ -1160,1376 +1160,1375 @@ class App extends React.Component {
   };
 
   render() {
-    if (isMobile) {
-      if (this.state.authenticated === false) {
-        return (
-          <div id="App" className="App">
-            <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
-              <div className="timeoutToast max-widther" id="timeoutToast">
-                {this.state.timeoutMsg}{" "}
-                <MdCancel
-                  className="timeoutMsgCloserIcon"
-                  title="Tap to close"
-                  onClick={this.timeoutMsgCloser}
-                />
-              </div>
-            </Fade>
-            <div
-              className="navbar-brand-in-details navbar-brand-in-details--m authBrand"
-              onClick={this.pageReload}
-            >
-              <FaCode size="25px" className="brandIcon logoLogo" />
-              <div className="logoText">
-                CSE 2020
-                <span className="textAllOver">
-                  FIND AND RECONNECT
-                  <br />
-                  WITH B.TECH CLASSMATES.
-                </span>
-              </div>
+    if (this.state.authenticated === false) {
+      return (
+        <div id="App" className="App">
+          <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
+            <div className="timeoutToast max-widther" id="timeoutToast">
+              {this.state.timeoutMsg}{" "}
+              <MdCancel
+                className="timeoutMsgCloserIcon"
+                title="Tap to close"
+                onClick={this.timeoutMsgCloser}
+              />
             </div>
-            <div className="authForm max-widther">
-              <div className="authContainer">
-                <div className="authHead">Authenticate yourself</div>
-                <div className="authFormDiv">
-                  <form onSubmit={this.authenticate}>
-                    <input
-                      className="authInput"
-                      id="authInput"
-                      type="password"
-                      placeholder="Enter the key"
-                      autoComplete="off"
-                      required
-                    />
-                    <div className="authErrorDiv" id="authErrorDiv">
-                      &#160;
-                    </div>
-                    <button type="submit" className="authSubmit">
-                      LOGIN
-                    </button>
-                  </form>
-                </div>
-                <div className="authFooter">
-                  <div className="authFooterUp">
-                    Problem with the login or forgot the key?
-                  </div>
-                  <div>
-                    <a
-                      href="mailto:vrsec2020@gmail.com?subject=Problem%20with%20login/forgot%20the%20key"
-                      className="authFooterDown"
-                    >
-                      CONTACT NOW
-                    </a>
-                  </div>
-                </div>
-              </div>
+          </Fade>
+          <div
+            className="navbar-brand-in-details authBrand"
+            onClick={this.pageReload}
+          >
+            <FaCode size={isMobile ? "25px" : "30px"} className="brandIcon logoLogo" />
+            <div className="logoText">
+              CSE 2020
+              <span className="textAllOver">
+                {isMobile ? "FIND AND RECONNECT" : "FIND AND RECONNECT WITH"}
+                <br />
+                {isMobile ? "WITH B.TECH CLASSMATES." : "B.TECH CLASSMATES."}
+              </span>
             </div>
           </div>
-        );
-      } else if (this.state.authenticated === "loading") {
-        return (
-          <div className="ipl-progress-indicator" id="ipl-progress-indicator">
-            <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
-              <div className="timeoutToast" id="timeoutToast">
-                {this.state.timeoutMsg}{" "}
-                <MdCancel
-                  className="timeoutMsgCloserIcon"
-                  title="Tap to close"
-                  onClick={this.timeoutMsgCloser}
-                />
-              </div>
-            </Fade>
-            <div className="ipl-progress-indicator-head">
-              <div className="first-indicator"></div>
-              <div className="second-indicator"></div>
-            </div>
-            <div className="insp-logo-frame">
-              <svg
-                className="insp-logo-frame-img"
-                version="1.1"
-                id="L3"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                viewBox="0 0 100 100"
-                enableBackground="new 0 0 0 0"
-                xmlSpace="preserve"
-              >
-                <filter id="code" x="0%" y="0%" width="100%" height="100%">
-                  <feImage xlinkHref="./favicon.png" />
-                </filter>
-                <circle
-                  filter="url(#code)"
-                  stroke="gray"
-                  strokeWidth="4"
-                  cx="50"
-                  cy="50"
-                  r="44"
-                  style={{ opacity: 0.5 }}
-                ></circle>
-                <circle
-                  fill="#000"
-                  stroke="none"
-                  strokeWidth="3"
-                  cx="8"
-                  cy="54"
-                  r="2.5"
-                >
-                  <animateTransform
-                    attributeName="transform"
-                    dur="1s"
-                    type="rotate"
-                    from="0 52 48"
-                    to="360 50 52"
-                    repeatCount="indefinite"
+          <div className="authForm max-widther">
+            <div className="authContainer">
+              <div className="authHead">Authenticate yourself</div>
+              <div className="authFormDiv">
+                <form onSubmit={this.authenticate}>
+                  <input
+                    className="authInput"
+                    id="authInput"
+                    type="password"
+                    placeholder="Enter the key"
+                    autoComplete="off"
+                    required
                   />
-                </circle>
-              </svg>
+                  <div className="authErrorDiv" id="authErrorDiv">
+                    &#160;
+                  </div>
+                  <button type="submit" className="authSubmit">
+                    LOGIN
+                  </button>
+                </form>
+              </div>
+              <div className="authFooter">
+                <div className="authFooterUp">
+                  Problem with the login or forgot the key?
+                </div>
+                <div>
+                  <a
+                    href="mailto:vrsec2020@gmail.com?subject=Problem%20with%20login/forgot%20the%20key"
+                    className="authFooterDown"
+                  >
+                    CONTACT NOW
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        );
-      } else if (this.state.authenticated === true) {
-        if (this.state.displayData === "nopeisyes") {
-          if (this.state.requestAdmin === false) {
-            return (
-              <div className="App mainDisplay" id="App">
-                <Fade
-                  top
-                  duration={500}
-                  when={this.state.showTimeoutMsgTrigger}
-                >
-                  <div className="timeoutToast max-widther" id="timeoutToast">
-                    {this.state.timeoutMsg}{" "}
-                    <MdCancel
-                      className="timeoutMsgCloserIcon"
-                      title="Tap to close"
-                      onClick={this.timeoutMsgCloser}
-                    />
-                  </div>
-                </Fade>
+        </div>
+      );
+    } else if (this.state.authenticated === "loading") {
+      return (
+        <div className="ipl-progress-indicator" id="ipl-progress-indicator">
+          <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
+            <div className="timeoutToast" id="timeoutToast">
+              {this.state.timeoutMsg}{" "}
+              <MdCancel
+                className="timeoutMsgCloserIcon"
+                title="Tap to close"
+                onClick={this.timeoutMsgCloser}
+              />
+            </div>
+          </Fade>
+          <div className="ipl-progress-indicator-head">
+            <div className="first-indicator"></div>
+            <div className="second-indicator"></div>
+          </div>
+          <div className="insp-logo-frame">
+            <svg
+              className="insp-logo-frame-img"
+              version="1.1"
+              id="L3"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 100 100"
+              enableBackground="new 0 0 0 0"
+              xmlSpace="preserve"
+            >
+              <filter id="code" x="0%" y="0%" width="100%" height="100%">
+                <feImage xlinkHref="./favicon.png" />
+              </filter>
+              <circle
+                filter="url(#code)"
+                stroke={isMobile ? "gray" : "#fff"}
+                strokeWidth="4"
+                cx="50"
+                cy="50"
+                r="44"
+                style={{ opacity: 0.5 }}
+              ></circle>
+              <circle
+                fill="#000"
+                stroke="none"
+                strokeWidth="3"
+                cx="8"
+                cy="54"
+                r="2.5"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  dur="1s"
+                  type="rotate"
+                  from="0 52 48"
+                  to="360 50 52"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </svg>
+          </div>
+        </div>
+      );
+    } else if (this.state.authenticated === true) {
+      if (this.state.displayData === "nopeisyes") {
+        if (this.state.requestAdmin === false) {
+          return (
+            <div className="App mainDisplay" id="App">
+              <Fade
+                top
+                duration={500}
+                when={this.state.showTimeoutMsgTrigger}
+              >
+                <div className="timeoutToast max-widther" id="timeoutToast">
+                  {this.state.timeoutMsg}{" "}
+                  <MdCancel
+                    className="timeoutMsgCloserIcon"
+                    title="Tap to close"
+                    onClick={this.timeoutMsgCloser}
+                  />
+                </div>
+              </Fade>
 
-                <div
-                  className="modal fade"
-                  id="approveModal"
-                  tabIndex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Approval
-                        </h5>
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+              <div
+                className="modal fade"
+                id="approveModal"
+                tabIndex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog" role="document">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">
+                        Approval
+                      </h5>
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <div className="approvalDescription">
+                        <strong>
+                          Approval to display your phone number in this app.
+                        </strong>
+                        <br />
+                        This approval will help our classmates to stay
+                        connected using your phone number.
                       </div>
-                      <div className="modal-body">
-                        <div className="approvalDescription">
-                          <strong>
-                            Approval to display your phone number in this app.
-                          </strong>
-                          <br />
-                          This approval will help our classmates to stay
-                          connected using your phone number.
-                        </div>
-                        <form id="otpEmailForm" onSubmit={this.requestOTP}>
-                          <div className="form-group">
-                            <label htmlFor="approveEmail">Email</label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              id="approveEmail"
-                              placeholder="Enter you email"
-                              required
-                            />
-                          </div>
-                        </form>
-                        <div className="otpInputDiv" id="otpInputDiv">
-                          <OtpInput
-                            onChange={this.handleOTPChange}
-                            value={this.state.otpEntered}
-                            numInputs={5}
-                            separator={<span>&nbsp;&nbsp;-&nbsp;&nbsp;</span>}
-                            inputStyle="otpInputStyle"
-                            containerStyle="otpContainerStyle"
-                            isInputNum={true}
+                      <form id="otpEmailForm" onSubmit={this.requestOTP}>
+                        <div className="form-group">
+                          <label htmlFor="approveEmail">Email</label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            id="approveEmail"
+                            placeholder="Enter you email"
                             required
                           />
                         </div>
-                        <div className="otpInfo" id="otpInfo"></div>
+                      </form>
+                      <div className="otpInputDiv" id="otpInputDiv">
+                        <OtpInput
+                          onChange={this.handleOTPChange}
+                          value={this.state.otpEntered}
+                          numInputs={5}
+                          separator={<span>&nbsp;&nbsp;-&nbsp;&nbsp;</span>}
+                          inputStyle="otpInputStyle"
+                          containerStyle="otpContainerStyle"
+                          isInputNum={true}
+                          required
+                        />
                       </div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button
-                          type="submit"
-                          form="otpEmailForm"
-                          className="btn btn-primary"
-                          id="requestOTP"
-                        >
-                          Request OTP
-                          <span
-                            className="otpSpinner spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                            id="requestOTPSpinner"
-                          ></span>
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          id="verifyOTP"
-                          onClick={this.verifyOTP}
-                        >
-                          Submit OTP
-                          <span
-                            className="otpSpinner spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                            id="verifyOTPSpinner"
-                          ></span>
-                        </button>
-                      </div>
+                      <div className="otpInfo" id="otpInfo"></div>
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button
+                        type="submit"
+                        form="otpEmailForm"
+                        className="btn btn-primary"
+                        id="requestOTP"
+                      >
+                        Request OTP
+                        <span
+                          className="otpSpinner spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                          id="requestOTPSpinner"
+                        ></span>
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        id="verifyOTP"
+                        onClick={this.verifyOTP}
+                      >
+                        Submit OTP
+                        <span
+                          className="otpSpinner spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                          id="verifyOTPSpinner"
+                        ></span>
+                      </button>
                     </div>
                   </div>
                 </div>
-                <Fade top duration={1500}>
-                  <div className="hero-wrap hero-wrap--m max-widther">
-                    <img
-                      className="backgr backgr--m"
-                      src={linesBackground}
-                      alt="cse2020"
-                    />
-                    <div className="overlay overlay--m"></div>
-                    <div className="contain">
-                      <nav className="navbar navbar-expand-lg navbar-light navbar--m">
-                        <div
-                          className="navbar-brand mr-auto"
-                          onClick={this.pageReload}
-                        >
-                          <Zoom left delay={800} duration={2300}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              <FaCode size="30px" className="brandIcon" />
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={2100}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              C
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={1900}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              S
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={1700}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              E
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={1500}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              &nbsp;
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={1500}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              2
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={1700}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              0
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={1900}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              2
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={2100}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              0
-                            </div>
-                          </Zoom>
-                        </div>
-                        <button
-                          className="navbar-toggler navbar-toggler--m"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#navbarNavDropdown"
-                          aria-controls="navbarNavDropdown"
-                          aria-expanded="false"
-                          aria-label="Toggle navigation"
-                        >
-                          <span className="navbar-toggler-icon navbar-toggler-icon--m"></span>
-                        </button>
-                        <div
-                          className="collapse navbar-collapse"
-                          id="navbarNavDropdown"
-                        >
-                          <div className="navbar-nav">
-                            <div className="nav-item">
-                              <div className="navOptions nav-link" href="#">
-                                <div
-                                  className="navbar-brand1"
-                                  data-toggle="modal"
-                                  data-target="#approveModal"
-                                >
-                                  <Fade duration={500}>Approve</Fade>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="nav-item">
-                              <div className="navOptions nav-link" href="#">
-                                <div
-                                  className="navbar-brand1"
-                                  onClick={() => this.directPageShift("footer")}
-                                >
-                                  <Fade duration={500}>About</Fade>
-                                </div>
-                              </div>
-                            </div>
+              </div>
+              <Fade top duration={1500}>
+                <div className="hero-wrap max-widther">
+                  <img
+                    className="backgr"
+                    src={linesBackground}
+                    alt="cse2020"
+                  />
+                  <div className="overlay"></div>
+                  <div className="contain">
+                    <nav className="navbar navbar-expand-lg navbar-light">
+                      <div
+                        className="navbar-brand mr-auto"
+                        onClick={this.pageReload}
+                      >
+                        <Zoom left delay={800} duration={2300}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            <FaCode size="30px" className="brandIcon" />
                           </div>
-                        </div>
-                      </nav>
-
-                      <div className="mainText">
-                        <div>
-                          <div className="textDia textDia--m">
-                            <Fade left cascade delay={2800} duration={500}>
-                              <div>
-                                <div>
-                                  <div className="textDiaInner">DIGITAL</div>
-                                </div>
-                                <div>
-                                  <div className="textDiaInner">ALBUM</div>
-                                </div>
-                                <div>
-                                  <div className="textDiaInner">FOR</div>
-                                </div>
-                                <div>
-                                  <div className="textDiaInner">CSE2020</div>
-                                </div>
-                              </div>
-                            </Fade>
+                        </Zoom>
+                        <Zoom left delay={800} duration={2100}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            C
                           </div>
-                          <Fade delay={3200}>
-                            <div className="brandDescription brandDescription--m">
-                              <div>
-                                <FaGraduationCap />
-                                Graduation is an exciting time. It's both an
-                                ending and a beginning.
-                              </div>
-                              <div>
-                                It's warm memories of the past and big dreams
-                                for the future.
-                              </div>
+                        </Zoom>
+                        <Zoom left delay={800} duration={1900}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            S
+                          </div>
+                        </Zoom>
+                        <Zoom left delay={800} duration={1700}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            E
+                          </div>
+                        </Zoom>
+                        <Zoom left delay={800} duration={1500}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            &nbsp;
+                          </div>
+                        </Zoom>
+                        <Zoom right delay={800} duration={1500}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            2
+                          </div>
+                        </Zoom>
+                        <Zoom right delay={800} duration={1700}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            0
+                          </div>
+                        </Zoom>
+                        <Zoom right delay={800} duration={1900}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            2
+                          </div>
+                        </Zoom>
+                        <Zoom right delay={800} duration={2100}>
+                          <div
+                            style={{
+                              display: "inline-block",
+                            }}
+                          >
+                            0
+                          </div>
+                        </Zoom>
+                      </div>
+                      <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                      >
+                        <span className="navbar-toggler-icon"></span>
+                      </button>
+                      <div
+                        className="collapse navbar-collapse"
+                        id="navbarNavDropdown"
+                      >
+                        <div className="navbar-nav">
+                          <div className="nav-item">
+                            <div className="navOptions nav-link" href="#">
                               <div
-                                style={{
-                                  color: "white",
-                                }}
+                                className="navbar-brand1"
+                                data-toggle="modal"
+                                data-target="#approveModal"
                               >
-                                Thanks for the truckload of good times.
+                                <Fade duration={500}>Approve</Fade>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="nav-item">
+                            <div className="navOptions nav-link" href="#">
+                              <div
+                                className="navbar-brand1"
+                                onClick={() => this.directPageShift("footer")}
+                              >
+                                <Fade duration={500}>About</Fade>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+
+                    <div className="mainText">
+                      <div>
+                        <div className="textDia">
+                          <Fade left cascade delay={2800} duration={500}>
+                            <div>
+                              <div>
+                                <div className="textDiaInner">DIGITAL</div>
+                              </div>
+                              <div>
+                                <div className="textDiaInner">ALBUM</div>
+                              </div>
+                              <div>
+                                <div className="textDiaInner">FOR</div>
+                              </div>
+                              <div>
+                                <div className="textDiaInner">CSE2020</div>
                               </div>
                             </div>
                           </Fade>
                         </div>
+                        <Fade delay={3200}>
+                          <div className="brandDescription">
+                            <div>
+                              <FaGraduationCap />
+                              Graduation is an exciting time. It's both an
+                              ending and a beginning.
+                            </div>
+                            <div>
+                              It's warm memories of the past and big dreams
+                              for the future.
+                            </div>
+                            <div
+                              style={{
+                                color: "white",
+                              }}
+                            >
+                              Thanks for the truckload of good times.
+                            </div>
+                          </div>
+                        </Fade>
                       </div>
                     </div>
-                    <div className="mouse">
+                  </div>
+                  <div className="mouse">
+                    <div
+                      onClick={() => this.scrollToId("contentScrollerToTabs")}
+                      className="mouse-icon"
+                    >
+                      <FaChevronDown className="PageDownArrow" />
+                    </div>
+                  </div>
+                </div>
+              </Fade>
+              <div className="max-widther">
+                <span id="contentScrollerToTabs"></span>
+                <div className="stickyNav" id="stickyNav">
+                  <nav>
+                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                      <Fade duration={1000}>
+                        <div
+                          className="stickyTab nav-item nav-link active"
+                          id="nav-all-tab"
+                          data-toggle="tab"
+                          href="#nav-all"
+                          role="tab"
+                          aria-controls="nav-all"
+                          aria-selected="true"
+                          onClick={() =>
+                            this.scrollToId("contentScrollerToTabs")
+                          }
+                        >
+                          ALL
+                        </div>
+                        <div
+                          className="stickyTab nav-item nav-link"
+                          id="nav-cse1-tab"
+                          data-toggle="tab"
+                          href="#nav-cse1"
+                          role="tab"
+                          aria-controls="nav-cse1"
+                          aria-selected="false"
+                          onClick={() =>
+                            this.scrollToId("contentScrollerToTabs")
+                          }
+                        >
+                          CSE 1
+                        </div>
+                        <div
+                          className="stickyTab nav-item nav-link"
+                          id="nav-cse2-tab"
+                          data-toggle="tab"
+                          href="#nav-cse2"
+                          role="tab"
+                          aria-controls="nav-cse2"
+                          aria-selected="false"
+                          onClick={() =>
+                            this.scrollToId("contentScrollerToTabs")
+                          }
+                        >
+                          CSE 2
+                        </div>
+                        <div
+                          className="stickyTab nav-item nav-link"
+                          id="nav-cse3-tab"
+                          data-toggle="tab"
+                          href="#nav-cse3"
+                          role="tab"
+                          aria-controls="nav-cse3"
+                          aria-selected="false"
+                          onClick={() =>
+                            this.scrollToId("contentScrollerToTabs")
+                          }
+                        >
+                          CSE 3
+                        </div>
+                        <div
+                          className="stickyTab nav-item nav-link"
+                          id="nav-staff-tab"
+                          data-toggle="tab"
+                          href="#nav-staff"
+                          role="tab"
+                          aria-controls="nav-staff"
+                          aria-selected="false"
+                          onClick={() =>
+                            this.scrollToId("contentScrollerToTabs")
+                          }
+                        >
+                          STAFF
+                        </div>
+                      </Fade>
+                    </div>
+                  </nav>
+                </div>
+
+                <div className="tab-content" id="nav-tabContent">
+                  <div
+                    className="tab-pane fade show active"
+                    id="nav-all"
+                    role="tabpanel"
+                    aria-labelledby="nav-all-tab"
+                  >
+                    <section className="ftco-section ftco-no-pb">
+                      <div className="searchBarCenter">
+                        <Fade>
+                          <div
+                            className="searchBarOverlay max-widther"
+                            id="searchBarOverlayAll"
+                          >
+                            <span
+                              className="searchIconSpan"
+                              onClick={() =>
+                                this.searchBarVisibilitySwap(
+                                  "searchBarOverlayAll",
+                                  "searchBarAll"
+                                )
+                              }
+                            >
+                              <FiSearch className="searchIcon" />
+                            </span>
+                          </div>
+                        </Fade>
+                        <div className="searchBarDiv" id="searchBarAll">
+                          <Select
+                            className="searchBar"
+                            options={this.state.allDataOptions}
+                            formatGroupLabel={formatGroupLabel}
+                            isClearable
+                            isSearchable
+                            placeholder={
+                              <div>Search for name or roll number...</div>
+                            }
+                            onChange={this.searchDealer}
+                          />
+                        </div>
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                CSE 1
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.cse1Data.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle1" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb1" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb1" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo1" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle1" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                CSE 2
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.cse2Data.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle1" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb1" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb1" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo1" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle1" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                CSE 3
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.cse3Data.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle1" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb1" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb1" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo1" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle1" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                STAFF
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.staffData.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle1" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb1" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb1" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo1" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle1" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="nav-cse1"
+                    role="tabpanel"
+                    aria-labelledby="nav-cse1-tab"
+                  >
+                    <section className="ftco-section ftco-no-pb">
+                      <div className="searchBarCenter">
+                        <Fade>
+                          <div
+                            className="searchBarOverlay max-widther"
+                            id="searchBarOverlayCSE1"
+                          >
+                            <span
+                              className="searchIconSpan"
+                              onClick={() =>
+                                this.searchBarVisibilitySwap(
+                                  "searchBarOverlayCSE1",
+                                  "searchBarCSE1"
+                                )
+                              }
+                            >
+                              <FiSearch className="searchIcon" />
+                            </span>
+                          </div>
+                        </Fade>
+                        <div className="searchBarDiv" id="searchBarCSE1">
+                          <Select
+                            className="searchBar"
+                            options={this.state.cse1DataOptions}
+                            formatGroupLabel={formatGroupLabel}
+                            isClearable
+                            isSearchable
+                            onChange={this.searchDealer}
+                            placeholder={
+                              <div>Search for name or roll number...</div>
+                            }
+                          />
+                        </div>
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                CSE 1
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.cse1Data.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle2" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb2" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb2" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo2" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle2" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="nav-cse2"
+                    role="tabpanel"
+                    aria-labelledby="nav-cse2-tab"
+                  >
+                    <section className="ftco-section ftco-no-pb">
+                      <div className="searchBarCenter">
+                        <Fade>
+                          <div
+                            className="searchBarOverlay max-widther"
+                            id="searchBarOverlayCSE2"
+                          >
+                            <span
+                              className="searchIconSpan"
+                              onClick={() =>
+                                this.searchBarVisibilitySwap(
+                                  "searchBarOverlayCSE2",
+                                  "searchBarCSE2"
+                                )
+                              }
+                            >
+                              <FiSearch className="searchIcon" />
+                            </span>
+                          </div>
+                        </Fade>
+                        <div className="searchBarDiv" id="searchBarCSE2">
+                          <Select
+                            className="searchBar"
+                            options={this.state.cse2DataOptions}
+                            formatGroupLabel={formatGroupLabel}
+                            isClearable
+                            isSearchable
+                            onChange={this.searchDealer}
+                            placeholder={
+                              <div>Search for name or roll number...</div>
+                            }
+                          />
+                        </div>
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                CSE 2
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.cse2Data.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle2" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb2" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb2" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo2" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle2" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="nav-cse3"
+                    role="tabpanel"
+                    aria-labelledby="nav-cse3-tab"
+                  >
+                    <section className="ftco-section ftco-no-pb">
+                      <div className="searchBarCenter">
+                        <Fade>
+                          <div
+                            className="searchBarOverlay max-widther"
+                            id="searchBarOverlayCSE3"
+                          >
+                            <span
+                              className="searchIconSpan"
+                              onClick={() =>
+                                this.searchBarVisibilitySwap(
+                                  "searchBarOverlayCSE3",
+                                  "searchBarCSE3"
+                                )
+                              }
+                            >
+                              <FiSearch className="searchIcon" />
+                            </span>
+                          </div>
+                        </Fade>
+                        <div className="searchBarDiv" id="searchBarCSE3">
+                          <Select
+                            className="searchBar"
+                            options={this.state.cse3DataOptions}
+                            formatGroupLabel={formatGroupLabel}
+                            isClearable
+                            isSearchable
+                            onChange={this.searchDealer}
+                            placeholder={
+                              <div>Search for name or roll number...</div>
+                            }
+                          />
+                        </div>
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                CSE 3
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.cse3Data.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle2" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb2" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb2" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo2" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle2" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="nav-staff"
+                    role="tabpanel"
+                    aria-labelledby="nav-staff-tab"
+                  >
+                    <section className="ftco-section ftco-no-pb">
+                      <div className="searchBarCenter">
+                        <Fade>
+                          <div
+                            className="searchBarOverlay max-widther"
+                            id="searchBarOverlayStaff"
+                          >
+                            <span
+                              className="searchIconSpan"
+                              onClick={() =>
+                                this.searchBarVisibilitySwap(
+                                  "searchBarOverlayStaff",
+                                  "searchBarStaff"
+                                )
+                              }
+                            >
+                              <FiSearch className="searchIcon" />
+                            </span>
+                          </div>
+                        </Fade>
+                        <div className="searchBarDiv" id="searchBarStaff">
+                          <Select
+                            className="searchBar"
+                            options={this.state.staffDataOptions}
+                            formatGroupLabel={formatGroupLabel}
+                            isClearable
+                            isSearchable
+                            onChange={this.searchDealer}
+                            placeholder={<div>Search for name...</div>}
+                          />
+                        </div>
+                      </div>
+                      <Fade bottom duration={300}>
+                        <div className="sectionHeader">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12 heading-section text-center">
+                              <span className="subheading">
+                                STAFF
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Fade>
+                      <div className="card-list" id="card-list">
+                        {this.state.staffData.map((item, index) => (
+                          <Fade
+                            bottom
+                            duration={400}
+                            key={index}
+                            onReveal={() => this.getThumbImage(item.personId)}
+                          >
+                            <div className="cardStyleProtector">
+                              <div
+                                className="cardStyle"
+                                id={"cardStyle2" + item.personId}
+                              >
+                                <div
+                                  className="card-image-div card-image-div-temp"
+                                  id={"thumb2" + item.personId + "div"}
+                                >
+                                  <img
+                                    src="#"
+                                    alt="NotLoaded"
+                                    className="card-image"
+                                    id={"thumb2" + item.personId}
+                                  />
+                                </div>
+                                <div
+                                  className="card-info"
+                                  id={"cardInfo2" + item.personId}
+                                >
+                                  <div className="card-info-name">
+                                    {item.name}
+                                  </div>
+                                </div>
+                                <div className="card-features">
+                                  <div
+                                    className="card-features-button"
+                                    onClick={() =>
+                                      this.viewDetails(item.personId)
+                                    }
+                                  >
+                                    View Details
+                                  </div>
+                                </div>
+                                <div
+                                  className="cardStyleHighlight"
+                                  id={
+                                    "cardStyle2" + item.personId + "Highlight"
+                                  }
+                                ></div>
+                              </div>
+                            </div>
+                          </Fade>
+                        ))}
+                      </div>
+                    </section>
+                  </div>
+                </div>
+
+                <Fade duration={500}>
+                  <div className="detailsModal" id="detailsModal">
+                    <div className="detailsModalScreen"></div>
+                    <div className="detailsModalOuter">
                       <div
-                        onClick={() => this.scrollToId("contentScrollerToTabs")}
-                        className="mouse-icon"
+                        className="navbar-brand-in-details"
+                        onClick={this.pageReload}
                       >
-                        <FaChevronDown className="PageDownArrow" />
+                        <FaCode size={isMobile ? "25px" : "30px"} className="brandIcon" />
+                        CSE 2020
+                      </div>
+                      <div className="detailsModalCancelDiv">
+                        <MdCancel
+                          className="detailsModalCancel"
+                          onClick={this.closeDetails}
+                        />
+                      </div>
+                      <div
+                        className="detailsModalInner detailsModalStudent"
+                        id="detailsModalStudent"
+                      >
+                        <div className="detailsModalInnerExtra">
+                          <div className="detailsModalInnerUltra">
+                            <Fade delay={500} duration={500}>
+                              <div>
+                                <div className="detailsModalName">
+                                  {this.state.detailsModalName}
+                                </div>
+                                <div className="detailsModalRno">
+                                  {this.state.detailsModalRno}
+                                </div>
+                                <div>
+                                  <MdCall className="modalIcon" />{" "}
+                                  &nbsp;&nbsp;
+                                  <a
+                                    className="modalDetail modalHref modalPno"
+                                    href={"tel:" + this.state.detailsModalPno}
+                                  >
+                                    {this.state.detailsModalPno}
+                                  </a>
+                                </div>
+                                <div>
+                                  <MdEmail className="modalIcon" />{" "}
+                                  &nbsp;&nbsp;
+                                  <a
+                                    className="modalDetail modalHref"
+                                    href={
+                                      "mailto:" + this.state.detailsModalEmail
+                                    }
+                                  >
+                                    {this.state.detailsModalEmail}
+                                  </a>
+                                </div>
+                                <div>
+                                  <MdHome className="modalIcon" />{" "}
+                                  &nbsp;&nbsp;
+                                  <span className="modalDetail">
+                                    {this.state.detailsModalAddress}
+                                  </span>
+                                </div>
+                              </div>
+                            </Fade>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="detailsModalInner detailsModalStaff"
+                        id="detailsModalStaff"
+                      >
+                        <div className="detailsModalInnerExtra">
+                          <div className="detailsModalInnerUltra">
+                            <Fade delay={500} duration={500}>
+                              <div>
+                                <div className="detailsModalName">
+                                  {this.state.detailsModalName}
+                                </div>
+                                <div>
+                                  <MdEmail className="modalIcon" />{" "}
+                                  &nbsp;&nbsp;
+                                  <a
+                                    className="modalDetail modalHref"
+                                    href={
+                                      "mailto:" + this.state.detailsModalEmail
+                                    }
+                                  >
+                                    {this.state.detailsModalEmail}
+                                  </a>
+                                </div>
+                              </div>
+                            </Fade>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </Fade>
-                <div className="max-widther">
-                  <span id="contentScrollerToTabs"></span>
-                  <div className="stickyNav" id="stickyNav">
-                    <nav>
-                      <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                        <Fade duration={1000}>
-                          <div
-                            className="stickyTab stickyTab--m nav-item nav-link active"
-                            id="nav-all-tab"
-                            data-toggle="tab"
-                            href="#nav-all"
-                            role="tab"
-                            aria-controls="nav-all"
-                            aria-selected="true"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            ALL
-                          </div>
-                          <div
-                            className="stickyTab stickyTab--m nav-item nav-link"
-                            id="nav-cse1-tab"
-                            data-toggle="tab"
-                            href="#nav-cse1"
-                            role="tab"
-                            aria-controls="nav-cse1"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            CSE 1
-                          </div>
-                          <div
-                            className="stickyTab stickyTab--m nav-item nav-link"
-                            id="nav-cse2-tab"
-                            data-toggle="tab"
-                            href="#nav-cse2"
-                            role="tab"
-                            aria-controls="nav-cse2"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            CSE 2
-                          </div>
-                          <div
-                            className="stickyTab stickyTab--m nav-item nav-link"
-                            id="nav-cse3-tab"
-                            data-toggle="tab"
-                            href="#nav-cse3"
-                            role="tab"
-                            aria-controls="nav-cse3"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            CSE 3
-                          </div>
-                          <div
-                            className="stickyTab stickyTab--m nav-item nav-link"
-                            id="nav-staff-tab"
-                            data-toggle="tab"
-                            href="#nav-staff"
-                            role="tab"
-                            aria-controls="nav-staff"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            STAFF
+
+                <div className="max-widther" id="timelineStart">
+                  <div className="picturesArea"></div>
+                  <div className="timelineMain">
+                    <div className="timeliner">
+                      <div className="timelineContainer timelineLeft">
+                        <Fade left>
+                          <div className="timelineContent">
+                            <div className="timelineHeader timelineFirst">
+                              The Beginning
+                            </div>
+                            <p className="timelineMatter">
+                              Regular Entry : July 7th 2016
+                              <br />
+                              Lateral Entry : July 2nd 2017
+                            </p>
                           </div>
                         </Fade>
                       </div>
-                    </nav>
-                  </div>
-
-                  <div className="tab-content" id="nav-tabContent">
-                    <div
-                      className="tab-pane fade show active"
-                      id="nav-all"
-                      role="tabpanel"
-                      aria-labelledby="nav-all-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayAll"
-                            >
+                      <div className="timelineContainer timelineRight">
+                        <Fade right>
+                          <div className="timelineContent">
+                            <div className="timelineHeader">
+                              68 Total Subjects
                               <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayAll",
-                                    "searchBarAll"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarAll">
-                            <Select
-                              className="searchBar"
-                              options={this.state.allDataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                              onChange={this.searchDealer}
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  CSE 1
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse1Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  CSE 2
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse2Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  CSE 3
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse3Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  STAFF
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.staffData.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-cse1"
-                      role="tabpanel"
-                      aria-labelledby="nav-cse1-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayCSE1"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayCSE1",
-                                    "searchBarCSE1"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarCSE1">
-                            <Select
-                              className="searchBar"
-                              options={this.state.cse1DataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  CSE 1
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse1Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-cse2"
-                      role="tabpanel"
-                      aria-labelledby="nav-cse2-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayCSE2"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayCSE2",
-                                    "searchBarCSE2"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarCSE2">
-                            <Select
-                              className="searchBar"
-                              options={this.state.cse2DataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  CSE 2
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse2Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-cse3"
-                      role="tabpanel"
-                      aria-labelledby="nav-cse3-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayCSE3"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayCSE3",
-                                    "searchBarCSE3"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarCSE3">
-                            <Select
-                              className="searchBar"
-                              options={this.state.cse3DataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  CSE 3
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse3Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-staff"
-                      role="tabpanel"
-                      aria-labelledby="nav-staff-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayStaff"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayStaff",
-                                    "searchBarStaff"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarStaff">
-                            <Select
-                              className="searchBar"
-                              options={this.state.staffDataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={<div>Search for name...</div>}
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading subheading--m">
-                                  STAFF
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.staffData.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle cardStyle--m"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image card-image--m"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info card-info--m"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name card-info-name--m">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button card-features-button--m"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-
-                  <Fade duration={500}>
-                    <div className="detailsModal" id="detailsModal">
-                      <div className="detailsModalScreen"></div>
-                      <div className="detailsModalOuter">
-                        <div
-                          className="navbar-brand-in-details navbar-brand-in-details--m"
-                          onClick={this.pageReload}
-                        >
-                          <FaCode size="25px" className="brandIcon" />
-                          CSE 2020
-                        </div>
-                        <div className="detailsModalCancelDiv detailsModalCancelDiv--m">
-                          <MdCancel
-                            className="detailsModalCancel"
-                            onClick={this.closeDetails}
-                          />
-                        </div>
-                        <div
-                          className="detailsModalInner detailsModalStudent"
-                          id="detailsModalStudent"
-                        >
-                          <div className="detailsModalInnerExtra">
-                            <div className="detailsModalInnerUltra">
-                              <Fade delay={500} duration={500}>
-                                <div>
-                                  <div className="detailsModalName">
-                                    {this.state.detailsModalName}
-                                  </div>
-                                  <div className="detailsModalRno">
-                                    {this.state.detailsModalRno}
-                                  </div>
-                                  <div>
-                                    <MdCall className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <a
-                                      className="modalDetail modalHref modalPno"
-                                      href={"tel:" + this.state.detailsModalPno}
-                                    >
-                                      {this.state.detailsModalPno}
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <MdEmail className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <a
-                                      className="modalDetail modalHref"
-                                      href={
-                                        "mailto:" + this.state.detailsModalEmail
-                                      }
-                                    >
-                                      {this.state.detailsModalEmail}
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <MdHome className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <span className="modalDetail">
-                                      {this.state.detailsModalAddress}
-                                    </span>
-                                  </div>
-                                </div>
-                              </Fade>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          className="detailsModalInner detailsModalStaff"
-                          id="detailsModalStaff"
-                        >
-                          <div className="detailsModalInnerExtra">
-                            <div className="detailsModalInnerUltra">
-                              <Fade delay={500} duration={500}>
-                                <div>
-                                  <div className="detailsModalName">
-                                    {this.state.detailsModalName}
-                                  </div>
-                                  <div>
-                                    <MdEmail className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <a
-                                      className="modalDetail modalHref"
-                                      href={
-                                        "mailto:" + this.state.detailsModalEmail
-                                      }
-                                    >
-                                      {this.state.detailsModalEmail}
-                                    </a>
-                                  </div>
-                                </div>
-                              </Fade>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Fade>
-
-                  <div className="max-widther" id="timelineStart">
-                    <div className="picturesArea"></div>
-                    <div className="timelineMain">
-                      <div className="timeliner timeliner--m">
-                        <div className="timelineContainer timelineLeft">
-                          <Fade left>
-                            <div className="timelineContent">
-                              <div className="timelineHeader timelineHeader--m timelineFirst">
-                                The Beginning
-                              </div>
-                              <p className="timelineMatter timelineMatter--m">
-                                Regular Entry : July 7th 2016
-                                <br />
-                                Lateral Entry : July 2nd 2017
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                        <div className="timelineContainer timelineRight">
-                          <Fade right>
-                            <div className="timelineContent">
-                              <div className="timelineHeader timelineHeader--m">
-                                68 Total Subjects
-                                <span
-                                  tabIndex="0"
-                                  className="timelineInfo timelineInfo--m"
-                                  data-toggle="popover"
-                                  data-trigger="focus hover"
-                                  data-placement="auto"
-                                  title="Semester wise subject count"
-                                  data-html="true"
-                                  data-content="<p>
+                                tabIndex="0"
+                                className="timelineInfo"
+                                data-toggle="popover"
+                                data-trigger="focus hover"
+                                data-placement="auto"
+                                title="Semester wise subject count"
+                                data-html="true"
+                                data-content="<p>
                                                 Semester 1 : 7 Subjects, 2 Labs<br/>
                                                 Semester 2 : 7 Subjects, 3 Labs<br/>
                                                 Semester 3 : 6 Subjects, 3 Labs<br/>
@@ -2539,547 +2538,203 @@ class App extends React.Component {
                                                 Semester 7 : 5 Subjects, 1 Lab, 1 Mini Project, 1 Internship<br/>
                                                 Semester 8 : 3 Subjects, 1 Lab, 1 Major Project<br/>
                                               </p>"
-                                >
-                                  <FiInfo className="FiInfoTimeline" />
-                                </span>
-                              </div>
-                              <p className="timelineMatter timelineMatter--m">
-                                46 Theory subjects
-                                <br />
-                                18 Labs
-                                <br />
-                                1 Termpaper
-                                <br />
-                                1 Mini Project
-                                <br />
-                                1 Internship
-                                <br />1 Major Project
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                        <div className="timelineContainer timelineLeft">
-                          <Fade left>
-                            <div className="timelineContent">
-                              <div className="timelineHeader timelineHeader--m">
-                                Structure
-                              </div>
-                              <p className="timelineMatter timelineMatter--m">
-                                4 Years
-                                <br />
-                                8 Semesters
-                                <br />
-                                <i>Each semester :</i>
-                                <br />
-                                4 Internal Exams(2 Assignments, 2 Sessionals)
-                                <br />1 Semester End Exams
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                        <div className="timelineContainer timelineRight">
-                          <Fade right>
-                            <div className="timelineContent">
-                              <div className="timelineHeader timelineHeader--m timelineEnd">
-                                The End
-                              </div>
-                              <p className="timelineMatter timelineMatter--m">
-                                We have the most unexpected ending. Corona Virus
-                                became a major threat for the entire world and
-                                the whole country has been locked down since
-                                22nd March 2020, else we would've completed our
-                                final exams by 11th April 2020. I'll update the
-                                date of our graduation when things fall in
-                                place.
-                                <br />
-                                <br />
-                                <strong>Update : </strong>
-                                Finally we completed our final exams on 18th Sep
-                                2020. And the official date of leaving the
-                                college is 30th Nov 2020 as per TC.
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="max-widther midler">
-                    <div className="endingQuote">The class of 2020</div>
-                    <div className="totalVisits">
-                      ~ This website is visited{" "}
-                      <span className="visitsNumber">
-                        {this.state.totalVisits}
-                      </span>{" "}
-                      times ~
-                    </div>
-                  </div>
-                  <footer className="footer" id="footer">
-                    <Fade>
-                      <div>
-                        <nav className="footer__nav shuffle shuffled">
-                          <section className="footer__col footer__col--intro">
-                            <div
-                              className="navbar-brand"
-                              onClick={this.pageReload}
-                            >
-                              <FaCode size="30px" className="brandIcon" />
-                              CSE 2020
-                            </div>
-                            <p className="footer__slogan">
-                              This app helps you
-                              <strong>
-                                {" "}
-                                Find and reconnect with B.Tech classmates.
-                              </strong>
-                              <br />
-                              This app will have your back when you wanna see
-                              the faces of our classmates or reconnect with
-                              them, providing you with their pictures and
-                              contact details.
-                              <br />
-                              <strong>* </strong>
-                              If Heroku and MongoDB doesn't remove their free
-                              plans, this app will exist forever. And if i ever
-                              update this app to a paid custom domain, i'll let
-                              you guys know.
-                              <br />
-                            </p>
-                          </section>
-                          <section className="footer__col background--active">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title footer__col-title--m">
-                                Explore
-                              </h4>
-                              <div className="footer__nav-list">
-                                <div
-                                  className="footer__link"
-                                  onClick={() => this.directPageShift("App")}
-                                >
-                                  Home
-                                </div>
-                                <div
-                                  className="footer__link"
-                                  onClick={() => this.directPageShift("footer")}
-                                >
-                                  About
-                                </div>
-                                <div
-                                  className="footer__link"
-                                  onClick={() =>
-                                    this.directPageShift("timelineStart")
-                                  }
-                                >
-                                  Timeline
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                          <section className="footer__col">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title footer__col-title--m">
-                                Comment
-                              </h4>
-                              <a
-                                href="mailto:vrsec2020@gmail.com?subject=Feature%20Suggestion"
-                                className="footer__link"
                               >
-                                Suggest a feature
-                              </a>
-                              <a
-                                href="mailto:vrsec2020@gmail.com?subject=App%20Feedback"
-                                className="footer__link"
-                              >
-                                App feedback
-                              </a>
-                              <a
-                                href="mailto:vrsec2020@gmail.com?subject=Bug%20Report"
-                                className="footer__link"
-                              >
-                                Report a bug
-                              </a>
-                            </div>
-                          </section>
-                          <section className="footer__col footer__col--mobile footer__hide--large background--active">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title footer__col-title--m">
-                                Contact
-                              </h4>
-                              <a
-                                href="mailto:vrsec2020@gmail.com"
-                                className="footer__link"
-                              >
-                                vrsec2020@gmail.com
-                              </a>
-                              <a href="tel:9493976733" className="footer__link">
-                                9493976733
-                              </a>
-                            </div>
-                          </section>
-                          <section className="footer__col background--active">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title footer__col-title--m">
-                                Controls
-                              </h4>
-                              <div
-                                onClick={() =>
-                                  this.setState({
-                                    requestAdmin: true,
-                                  })
-                                }
-                                className="footer__link no-barba"
-                              >
-                                Admin
-                              </div>
-                            </div>
-                          </section>
-                          <small className="footer__legal">
-                            <span
-                              className="madeBy"
-                              tabIndex="0"
-                              data-toggle="popover"
-                              data-trigger="focus hover"
-                              data-placement="auto"
-                              data-html="true"
-                              data-content={`<img src = ${madeByImage} class = "madeByImageTag" alt = "Guna Chand"/>`}
-                            >
-                              Made With{" "}
-                              <span className="madeByIcon">
-                                <IoIosHeart />
-                              </span>{" "}
-                              By{" "}
-                              <span className="madeByName">
-                                Guna Chand Dakavarapu
+                                <FiInfo className="FiInfoTimeline" />
                               </span>
-                            </span>
-                            <br />© 2020 CSE2020. All Rights Reserved.
-                          </small>
-                        </nav>
+                            </div>
+                            <p className="timelineMatter">
+                              46 Theory subjects
+                              <br />
+                              18 Labs
+                              <br />
+                              1 Termpaper
+                              <br />
+                              1 Mini Project
+                              <br />
+                              1 Internship
+                              <br />1 Major Project
+                            </p>
+                          </div>
+                        </Fade>
                       </div>
-                    </Fade>
-                  </footer>
+                      <div className="timelineContainer timelineLeft">
+                        <Fade left>
+                          <div className="timelineContent">
+                            <div className="timelineHeader">
+                              Structure
+                            </div>
+                            <p className="timelineMatter">
+                              4 Years
+                              <br />
+                              8 Semesters
+                              <br />
+                              <i>Each semester :</i>
+                              <br />
+                              4 Internal Exams(2 Assignments, 2 Sessionals)
+                              <br />1 Semester End Exams
+                            </p>
+                          </div>
+                        </Fade>
+                      </div>
+                      <div className="timelineContainer timelineRight">
+                        <Fade right>
+                          <div className="timelineContent">
+                            <div className="timelineHeader timelineEnd">
+                              The End
+                            </div>
+                            <p className="timelineMatter">
+                              We have the most unexpected ending. Corona Virus
+                              became a major threat for the entire world and
+                              the whole country has been locked down since
+                              22nd March 2020, else we would've completed our
+                              final exams by 11th April 2020. I'll update the
+                              date of our graduation when things fall in
+                              place.
+                              <br />
+                              <br />
+                              <strong>Update : </strong>
+                              Finally we completed our final exams on 18th Sep
+                              2020. And the official date of leaving the
+                              college is 30th Nov 2020 as per TC.
+                            </p>
+                          </div>
+                        </Fade>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div className="max-widther midler">
+                  <div className="endingQuote">The class of 2020</div>
+                  <div className="totalVisits">
+                    ~ This website is visited{" "}
+                    <span className="visitsNumber">
+                      {this.state.totalVisits}
+                    </span>{" "}
+                    times ~
+                  </div>
+                </div>
+                <footer className="footer" id="footer">
+                  <Fade>
+                    <div>
+                      <nav className="footer__nav shuffle shuffled">
+                        <section className="footer__col footer__col--intro">
+                          <div
+                            className="navbar-brand"
+                            onClick={this.pageReload}
+                          >
+                            <FaCode size="30px" className="brandIcon" />
+                            CSE 2020
+                          </div>
+                          <p className="footer__slogan">
+                            This app helps you
+                            <strong>
+                              {" "}
+                              Find and reconnect with B.Tech classmates.
+                            </strong>
+                            <br />
+                            This app will have your back when you wanna see
+                            the faces of our classmates or reconnect with
+                            them, providing you with their pictures and
+                            contact details.
+                            <br />
+                            <strong>* </strong>
+                            If Heroku and MongoDB doesn't remove their free
+                            plans, this app will exist forever. And if i ever
+                            update this app to a paid custom domain, i'll let
+                            you guys know.
+                            <br />
+                          </p>
+                        </section>
+                        <section className="footer__col background--active">
+                          <div className="footer__col-wrap">
+                            <h4 className="footer__col-title">
+                              Explore
+                            </h4>
+                            <div className="footer__nav-list">
+                              <div
+                                className="footer__link"
+                                onClick={() => this.directPageShift("App")}
+                              >
+                                Home
+                              </div>
+                              <div
+                                className="footer__link"
+                                onClick={() =>
+                                  this.directPageShift("timelineStart")
+                                }
+                              >
+                                Timeline
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <section className="footer__col">
+                          <div className="footer__col-wrap">
+                            <h4 className="footer__col-title">
+                              Contact
+                            </h4>
+                            <a
+                              href="mailto:vrsec2020@gmail.com"
+                              className="footer__link"
+                            >
+                              vrsec2020@gmail.com
+                            </a>
+                            <a
+                              href="tel:9493976733"
+                              className="footer__link"
+                            >
+                              9493976733
+                            </a>
+                          </div>
+                        </section>
+                        <section className="footer__col footer__hide--large background--active">
+                          <div className="footer__col-wrap">
+                            <h4 className="footer__col-title">
+                              Controls
+                            </h4>
+                            <div
+                              onClick={() =>
+                                this.setState({
+                                  requestAdmin: true,
+                                })
+                              }
+                              className="footer__link no-barba"
+                            >
+                              Admin
+                            </div>
+                          </div>
+                        </section>
+                        <small className="footer__legal">
+                          <span
+                            className="madeBy"
+                            tabIndex="0"
+                            data-toggle="popover"
+                            data-trigger="focus hover"
+                            data-placement="auto"
+                            data-html="true"
+                            data-content={`<img src = ${madeByImage} class = "madeByImageTag" alt = "Guna Chand"/>`}
+                          >
+                            Made With{" "}
+                            <span className="madeByIcon">
+                              <IoIosHeart />
+                            </span>{" "}
+                            By{" "}
+                            <span className="madeByName">
+                              Guna Chand Dakavarapu
+                            </span>
+                          </span>
+                          <br />© 2020 CSE2020. All Rights Reserved.
+                        </small>
+                      </nav>
+                    </div>
+                  </Fade>
+                </footer>
               </div>
-            );
-          } else if (this.state.requestAdmin === true) {
-            if (this.state.isAdmin === "YesYet") {
-              if (this.state.confirmAdm === "nopeisyes") {
-                return (
-                  <div id="App" className="App">
-                    <Fade
-                      top
-                      duration={500}
-                      when={this.state.showTimeoutMsgTrigger}
-                    >
-                      <div className="timeoutToast" id="timeoutToast">
-                        {this.state.timeoutMsg}{" "}
-                        <MdCancel
-                          className="timeoutMsgCloserIcon"
-                          title="Tap to close"
-                          onClick={this.timeoutMsgCloser}
-                        />
-                      </div>
-                    </Fade>
-                    <div className="authForm max-widther">
-                      <div className="authBordered authBordered--m">
-                        <div className="authHead">Add/Update people</div>
-                        <div className="authFormDiv">
-                          <form
-                            id="adminUploadForm"
-                            onSubmit={this.uploadNewData}
-                          >
-                            <div className="custom-control custom-checkbox">
-                              <input
-                                type="checkbox"
-                                id="updatePhoto"
-                                name="updatePhoto"
-                                className="custom-control-input"
-                                value="updatePhoto"
-                                onClick={this.updatePhotoInputChange}
-                              />
-                              <label
-                                htmlFor="updatePhoto"
-                                className="custom-control-label updatePhotoLabel"
-                              >
-                                Update only picture(Students Only)
-                              </label>
-                            </div>
-                            <div
-                              className="categoryInput"
-                              id="categoryInputDiv"
-                            >
-                              <select
-                                id="categoryInput"
-                                className="authInputDropdown custom-select"
-                                defaultValue="select"
-                                onChange={this.handleCategoryInputChange}
-                                required
-                              >
-                                <option
-                                  value="select"
-                                  style={{
-                                    color: "gray",
-                                  }}
-                                  disabled
-                                >
-                                  Select category
-                                </option>
-                                <option value="cse1">CSE 1</option>
-                                <option value="cse2">CSE 2</option>
-                                <option value="cse3">CSE 3</option>
-                                <option value="staff">Staff</option>
-                              </select>
-                            </div>
-                            <div id="rnoInputDiv">
-                              <input
-                                className="authInput"
-                                id="rnoInput"
-                                type="text"
-                                placeholder="Enter roll number"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="nameInputDiv">
-                              <input
-                                className="authInput"
-                                id="nameInput"
-                                type="text"
-                                placeholder="Enter the name"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="pnoInputDiv">
-                              <input
-                                className="authInput"
-                                id="pnoInput"
-                                type="text"
-                                placeholder="Enter phone number"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="emailInputDiv">
-                              <input
-                                className="authInput"
-                                id="emailInput"
-                                type="email"
-                                placeholder="Enter email"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="addressInputDiv">
-                              <input
-                                className="authInput"
-                                id="addressInput"
-                                type="text"
-                                placeholder="Enter address"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <input
-                                className="authInput"
-                                id="updateKeyInput"
-                                type="password"
-                                placeholder="Key to update"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div className="custom-file fileSelect">
-                              <input
-                                type="file"
-                                className="custom-file-input fileSelectInput"
-                                id="fileSelectInput"
-                                required
-                              />
-                              <label
-                                className="custom-file-label fileSelectLabel"
-                                id="fileSelectLabel"
-                                htmlFor="fileSelectInput"
-                              >
-                                Choose file...
-                              </label>
-                            </div>
-                            <div className="tempImgDiv tempImgDiv--m">
-                              <div className="tempImgDivHead">Main</div>
-                              <img
-                                className="tempImg tempImg--m"
-                                id="tempImg"
-                                src=""
-                                alt=""
-                              />
-                            </div>
-                            <div
-                              className="tempImgDiv tempImgThumb"
-                              id="tempImgThumb"
-                            >
-                              <div className="tempImgDivHead">Thumbnail</div>
-                              <img
-                                className="tempImg"
-                                id="tempImg2"
-                                src=""
-                                alt=""
-                              />
-                            </div>
-                            <div className="authErrorDiv">&#160;</div>
-                            <button
-                              type="submit"
-                              id="uploadButton"
-                              className="authSubmit"
-                            >
-                              UPLOAD
-                            </button>
-                            <button
-                              id="updatePictureButton"
-                              className="authSubmit updatePictureButton"
-                              onClick={this.updatePhoto}
-                            >
-                              UPDATE PICTURE
-                            </button>
-                          </form>
-                          <button
-                            className="authCancel"
-                            onClick={() =>
-                              this.setState({
-                                requestAdmin: false,
-                              })
-                            }
-                          >
-                            CANCEL
-                          </button>
-                        </div>
-                      </div>
-                      <div className="authBordered">
-                        <div className="authHead">Change App Password</div>
-                        <div className="authFormDiv">
-                          <form
-                            id="appPasswordForm"
-                            onSubmit={this.appPasswordChange}
-                          >
-                            <div>
-                              <input
-                                className="authInput"
-                                id="appPasswordInput"
-                                type="text"
-                                placeholder="Enter new password"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <input
-                                className="authInput"
-                                id="appPasswordUpdateKeyInput"
-                                type="password"
-                                placeholder="Key to update"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <button
-                              type="submit"
-                              form="appPasswordForm"
-                              className="authSubmit"
-                            >
-                              UPLOAD
-                            </button>
-                          </form>
-                          <button
-                            className="authCancel"
-                            onClick={() =>
-                              this.setState({
-                                requestAdmin: false,
-                              })
-                            }
-                          >
-                            CANCEL
-                          </button>
-                        </div>
-                      </div>
-                      <div className="authBordered">
-                        <div className="authHead">Change Admin Password</div>
-                        <div className="authFormDiv">
-                          <form
-                            id="adminPasswordForm"
-                            onSubmit={this.adminPasswordChange}
-                          >
-                            <div>
-                              <input
-                                className="authInput"
-                                id="adminPasswordInput"
-                                type="text"
-                                placeholder="Enter new password"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <input
-                                className="authInput"
-                                id="adminPasswordUpdateKeyInput"
-                                type="password"
-                                placeholder="Key to update"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <button
-                              type="submit"
-                              form="adminPasswordForm"
-                              className="authSubmit"
-                            >
-                              UPLOAD
-                            </button>
-                          </form>
-                          <button
-                            className="authCancel"
-                            onClick={() =>
-                              this.setState({
-                                requestAdmin: false,
-                              })
-                            }
-                          >
-                            CANCEL
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div id="App" className="App">
-                    <Fade
-                      top
-                      duration={500}
-                      when={this.state.showTimeoutMsgTrigger}
-                    >
-                      <div className="timeoutToast" id="timeoutToast">
-                        {this.state.timeoutMsg}{" "}
-                        <MdCancel
-                          className="timeoutMsgCloserIcon"
-                          title="Tap to close"
-                          onClick={this.timeoutMsgCloser}
-                        />
-                      </div>
-                    </Fade>
-                    <div className="authForm">
-                      <div className="authContainer">
-                        <div className="authHead">
-                          Good try! But i know this loophole and patched it,
-                          Sorry.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-            } else if (this.state.isAdmin === "NotYet") {
+            </div>
+          );
+        } else if (this.state.requestAdmin === true) {
+          if (this.state.isAdmin === "YesYet") {
+            if (this.state.confirmAdm === "nopeisyes") {
               return (
                 <div id="App" className="App">
                   <Fade
@@ -3097,23 +2752,259 @@ class App extends React.Component {
                     </div>
                   </Fade>
                   <div className="authForm max-widther">
-                    <div className="authContainer">
-                      <div className="authHead">Admin Authentication</div>
+                    <div className="authBordered">
+                      <div className="authHead">Add/Update people</div>
                       <div className="authFormDiv">
-                        <form onSubmit={this.authenticateAdmin}>
-                          <input
-                            className="authInput"
-                            id="adminInput"
-                            type="password"
-                            placeholder="Enter the key"
-                            autoComplete="off"
-                            required
-                          />
-                          <div className="authErrorDiv" id="adminErrorDiv">
-                            &#160;
+                        <form
+                          id="adminUploadForm"
+                          onSubmit={this.uploadNewData}
+                        >
+                          <div className="custom-control custom-checkbox">
+                            <input
+                              type="checkbox"
+                              id="updatePhoto"
+                              name="updatePhoto"
+                              className="custom-control-input"
+                              value="updatePhoto"
+                              onClick={this.updatePhotoInputChange}
+                            />
+                            <label
+                              htmlFor="updatePhoto"
+                              className="custom-control-label updatePhotoLabel"
+                            >
+                              Update only picture(Students Only)
+                            </label>
                           </div>
-                          <button type="submit" className="authSubmit">
-                            LOGIN
+                          <div
+                            className="categoryInput"
+                            id="categoryInputDiv"
+                          >
+                            <select
+                              id="categoryInput"
+                              className="authInputDropdown custom-select"
+                              defaultValue="select"
+                              onChange={this.handleCategoryInputChange}
+                              required
+                            >
+                              <option
+                                value="select"
+                                style={{
+                                  color: "gray",
+                                }}
+                                disabled
+                              >
+                                Select category
+                              </option>
+                              <option value="cse1">CSE 1</option>
+                              <option value="cse2">CSE 2</option>
+                              <option value="cse3">CSE 3</option>
+                              <option value="staff">Staff</option>
+                            </select>
+                          </div>
+                          <div id="rnoInputDiv">
+                            <input
+                              className="authInput"
+                              id="rnoInput"
+                              type="text"
+                              placeholder="Enter roll number"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div id="nameInputDiv">
+                            <input
+                              className="authInput"
+                              id="nameInput"
+                              type="text"
+                              placeholder="Enter the name"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div id="pnoInputDiv">
+                            <input
+                              className="authInput"
+                              id="pnoInput"
+                              type="text"
+                              placeholder="Enter phone number"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div id="emailInputDiv">
+                            <input
+                              className="authInput"
+                              id="emailInput"
+                              type="email"
+                              placeholder="Enter email"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div id="addressInputDiv">
+                            <input
+                              className="authInput"
+                              id="addressInput"
+                              type="text"
+                              placeholder="Enter address"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <input
+                              className="authInput"
+                              id="updateKeyInput"
+                              type="password"
+                              placeholder="Key to update"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div className="custom-file fileSelect">
+                            <input
+                              type="file"
+                              className="custom-file-input fileSelectInput"
+                              id="fileSelectInput"
+                              required
+                            />
+                            <label
+                              className="custom-file-label fileSelectLabel"
+                              id="fileSelectLabel"
+                              htmlFor="fileSelectInput"
+                            >
+                              Choose file...
+                            </label>
+                          </div>
+                          <div className="tempImgDiv">
+                            <div className="tempImgDivHead">Main</div>
+                            <img
+                              className="tempImg"
+                              id="tempImg"
+                              src=""
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            className="tempImgDiv tempImgThumb"
+                            id="tempImgThumb"
+                          >
+                            <div className="tempImgDivHead">Thumbnail</div>
+                            <img
+                              className="tempImg"
+                              id="tempImg2"
+                              src=""
+                              alt=""
+                            />
+                          </div>
+                          <div className="authErrorDiv">&#160;</div>
+                          <button
+                            type="submit"
+                            id="uploadButton"
+                            className="authSubmit"
+                          >
+                            UPLOAD
+                          </button>
+                          <button
+                            id="updatePictureButton"
+                            className="authSubmit updatePictureButton"
+                            onClick={this.updatePhoto}
+                          >
+                            UPDATE PICTURE
+                          </button>
+                        </form>
+                        <button
+                          className="authCancel"
+                          onClick={() =>
+                            this.setState({
+                              requestAdmin: false,
+                            })
+                          }
+                        >
+                          CANCEL
+                        </button>
+                      </div>
+                    </div>
+                    <div className="authBordered">
+                      <div className="authHead">Change App Password</div>
+                      <div className="authFormDiv">
+                        <form
+                          id="appPasswordForm"
+                          onSubmit={this.appPasswordChange}
+                        >
+                          <div>
+                            <input
+                              className="authInput"
+                              id="appPasswordInput"
+                              type="text"
+                              placeholder="Enter new password"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <input
+                              className="authInput"
+                              id="appPasswordUpdateKeyInput"
+                              type="password"
+                              placeholder="Key to update"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            form="appPasswordForm"
+                            className="authSubmit"
+                          >
+                            UPLOAD
+                          </button>
+                        </form>
+                        <button
+                          className="authCancel"
+                          onClick={() =>
+                            this.setState({
+                              requestAdmin: false,
+                            })
+                          }
+                        >
+                          CANCEL
+                        </button>
+                      </div>
+                    </div>
+                    <div className="authBordered">
+                      <div className="authHead">Change Admin Password</div>
+                      <div className="authFormDiv">
+                        <form
+                          id="adminPasswordForm"
+                          onSubmit={this.adminPasswordChange}
+                        >
+                          <div>
+                            <input
+                              className="authInput"
+                              id="adminPasswordInput"
+                              type="text"
+                              placeholder="Enter new password"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <input
+                              className="authInput"
+                              id="adminPasswordUpdateKeyInput"
+                              type="password"
+                              placeholder="Key to update"
+                              autoComplete="off"
+                              required
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            form="adminPasswordForm"
+                            className="authSubmit"
+                          >
+                            UPLOAD
                           </button>
                         </form>
                         <button
@@ -3131,1926 +3022,7 @@ class App extends React.Component {
                   </div>
                 </div>
               );
-            }
-          }
-        } else {
-          return (
-            <div id="App" className="App">
-              <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
-                <div className="timeoutToast" id="timeoutToast">
-                  {this.state.timeoutMsg}{" "}
-                  <MdCancel
-                    className="timeoutMsgCloserIcon"
-                    title="Tap to close"
-                    onClick={this.timeoutMsgCloser}
-                  />
-                </div>
-              </Fade>
-              <div className="authForm">
-                <div className="authContainer">
-                  <div className="authHead">
-                    Good try! But i know this loophole and patched it, Sorry.
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        }
-      }
-    } else {
-      if (this.state.authenticated === false) {
-        return (
-          <div id="App" className="App">
-            <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
-              <div className="timeoutToast max-widther" id="timeoutToast">
-                {this.state.timeoutMsg}{" "}
-                <MdCancel
-                  className="timeoutMsgCloserIcon"
-                  title="Tap to close"
-                  onClick={this.timeoutMsgCloser}
-                />
-              </div>
-            </Fade>
-            <div
-              className="navbar-brand-in-details authBrand"
-              onClick={this.pageReload}
-            >
-              <FaCode size="30px" className="brandIcon logoLogo" />
-              <div className="logoText">
-                CSE 2020
-                <span className="textAllOver">
-                  FIND AND RECONNECT WITH
-                  <br />
-                  B.TECH CLASSMATES.
-                </span>
-              </div>
-            </div>
-            <div className="authForm max-widther">
-              <div className="authContainer">
-                <div className="authHead">Authenticate yourself</div>
-                <div className="authFormDiv">
-                  <form onSubmit={this.authenticate}>
-                    <input
-                      className="authInput"
-                      id="authInput"
-                      type="password"
-                      placeholder="Enter the key"
-                      autoComplete="off"
-                      required
-                    />
-                    <div className="authErrorDiv" id="authErrorDiv">
-                      &#160;
-                    </div>
-                    <button type="submit" className="authSubmit">
-                      LOGIN
-                    </button>
-                  </form>
-                </div>
-                <div className="authFooter">
-                  <div className="authFooterUp">
-                    Problem with the login or forgot the key?
-                  </div>
-                  <div>
-                    <a
-                      href="mailto:vrsec2020@gmail.com?subject=Problem%20with%20login/forgot%20the%20key"
-                      className="authFooterDown"
-                    >
-                      CONTACT NOW
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      } else if (this.state.authenticated === "loading") {
-        return (
-          <div className="ipl-progress-indicator" id="ipl-progress-indicator">
-            <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
-              <div className="timeoutToast" id="timeoutToast">
-                {this.state.timeoutMsg}{" "}
-                <MdCancel
-                  className="timeoutMsgCloserIcon"
-                  title="Tap to close"
-                  onClick={this.timeoutMsgCloser}
-                />
-              </div>
-            </Fade>
-            <div className="ipl-progress-indicator-head">
-              <div className="first-indicator"></div>
-              <div className="second-indicator"></div>
-            </div>
-            <div className="insp-logo-frame">
-              <svg
-                className="insp-logo-frame-img"
-                version="1.1"
-                id="L3"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                viewBox="0 0 100 100"
-                enableBackground="new 0 0 0 0"
-                xmlSpace="preserve"
-              >
-                <filter id="code" x="0%" y="0%" width="100%" height="100%">
-                  <feImage xlinkHref="./favicon.png" />
-                </filter>
-                <circle
-                  filter="url(#code)"
-                  stroke="#fff"
-                  strokeWidth="4"
-                  cx="50"
-                  cy="50"
-                  r="44"
-                  style={{ opacity: 0.5 }}
-                ></circle>
-                <circle
-                  fill="#000"
-                  stroke="none"
-                  strokeWidth="3"
-                  cx="8"
-                  cy="54"
-                  r="2.5"
-                >
-                  <animateTransform
-                    attributeName="transform"
-                    dur="1s"
-                    type="rotate"
-                    from="0 52 48"
-                    to="360 50 52"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-              </svg>
-            </div>
-          </div>
-        );
-      } else if (this.state.authenticated === true) {
-        if (this.state.displayData === "nopeisyes") {
-          if (this.state.requestAdmin === false) {
-            return (
-              <div className="App mainDisplay" id="App">
-                <Fade
-                  top
-                  duration={500}
-                  when={this.state.showTimeoutMsgTrigger}
-                >
-                  <div className="timeoutToast max-widther" id="timeoutToast">
-                    {this.state.timeoutMsg}{" "}
-                    <MdCancel
-                      className="timeoutMsgCloserIcon"
-                      title="Tap to close"
-                      onClick={this.timeoutMsgCloser}
-                    />
-                  </div>
-                </Fade>
-
-                <div
-                  className="modal fade"
-                  id="approveModal"
-                  tabIndex="-1"
-                  role="dialog"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Approval
-                        </h5>
-                        <button
-                          type="button"
-                          className="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div className="modal-body">
-                        <div className="approvalDescription">
-                          <strong>
-                            Approval to display your phone number in this app.
-                          </strong>
-                          <br />
-                          This approval will help our classmates to stay
-                          connected using your phone number.
-                        </div>
-                        <form id="otpEmailForm" onSubmit={this.requestOTP}>
-                          <div className="form-group">
-                            <label htmlFor="approveEmail">Email</label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              id="approveEmail"
-                              placeholder="Enter you email"
-                              required
-                            />
-                          </div>
-                        </form>
-                        <div className="otpInputDiv" id="otpInputDiv">
-                          <OtpInput
-                            onChange={this.handleOTPChange}
-                            value={this.state.otpEntered}
-                            numInputs={5}
-                            separator={<span>&nbsp;&nbsp;-&nbsp;&nbsp;</span>}
-                            inputStyle="otpInputStyle"
-                            containerStyle="otpContainerStyle"
-                            isInputNum={true}
-                            required
-                          />
-                        </div>
-                        <div className="otpInfo" id="otpInfo"></div>
-                      </div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button
-                          type="submit"
-                          form="otpEmailForm"
-                          className="btn btn-primary"
-                          id="requestOTP"
-                        >
-                          Request OTP
-                          <span
-                            className="otpSpinner spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                            id="requestOTPSpinner"
-                          ></span>
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          id="verifyOTP"
-                          onClick={this.verifyOTP}
-                        >
-                          Submit OTP
-                          <span
-                            className="otpSpinner spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                            id="verifyOTPSpinner"
-                          ></span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <Fade top duration={1500}>
-                  <div className="hero-wrap max-widther">
-                    <img
-                      className="backgr"
-                      src={linesBackground}
-                      alt="cse2020"
-                    />
-                    <div className="overlay"></div>
-                    <div className="contain">
-                      <nav className="navbar navbar-expand-lg navbar-light">
-                        <div
-                          className="navbar-brand mr-auto"
-                          onClick={this.pageReload}
-                        >
-                          <Zoom left delay={800} duration={2300}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              <FaCode size="30px" className="brandIcon" />
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={2100}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              C
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={1900}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              S
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={1700}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              E
-                            </div>
-                          </Zoom>
-                          <Zoom left delay={800} duration={1500}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              &nbsp;
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={1500}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              2
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={1700}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              0
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={1900}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              2
-                            </div>
-                          </Zoom>
-                          <Zoom right delay={800} duration={2100}>
-                            <div
-                              style={{
-                                display: "inline-block",
-                              }}
-                            >
-                              0
-                            </div>
-                          </Zoom>
-                        </div>
-                        <button
-                          className="navbar-toggler"
-                          type="button"
-                          data-toggle="collapse"
-                          data-target="#navbarNavDropdown"
-                          aria-controls="navbarNavDropdown"
-                          aria-expanded="false"
-                          aria-label="Toggle navigation"
-                        >
-                          <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div
-                          className="collapse navbar-collapse"
-                          id="navbarNavDropdown"
-                        >
-                          <div className="navbar-nav">
-                            <div className="nav-item">
-                              <div className="navOptions nav-link" href="#">
-                                <div
-                                  className="navbar-brand1"
-                                  data-toggle="modal"
-                                  data-target="#approveModal"
-                                >
-                                  <Fade duration={500}>Approve</Fade>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="nav-item">
-                              <div className="navOptions nav-link" href="#">
-                                <div
-                                  className="navbar-brand1"
-                                  onClick={() => this.directPageShift("footer")}
-                                >
-                                  <Fade duration={500}>About</Fade>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </nav>
-
-                      <div className="mainText">
-                        <div>
-                          <div className="textDia">
-                            <Fade left cascade delay={2800} duration={500}>
-                              <div>
-                                <div>
-                                  <div className="textDiaInner">DIGITAL</div>
-                                </div>
-                                <div>
-                                  <div className="textDiaInner">ALBUM</div>
-                                </div>
-                                <div>
-                                  <div className="textDiaInner">FOR</div>
-                                </div>
-                                <div>
-                                  <div className="textDiaInner">CSE2020</div>
-                                </div>
-                              </div>
-                            </Fade>
-                          </div>
-                          <Fade delay={3200}>
-                            <div className="brandDescription">
-                              <div>
-                                <FaGraduationCap />
-                                Graduation is an exciting time. It's both an
-                                ending and a beginning.
-                              </div>
-                              <div>
-                                It's warm memories of the past and big dreams
-                                for the future.
-                              </div>
-                              <div
-                                style={{
-                                  color: "white",
-                                }}
-                              >
-                                Thanks for the truckload of good times.
-                              </div>
-                            </div>
-                          </Fade>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mouse">
-                      <div
-                        onClick={() => this.scrollToId("contentScrollerToTabs")}
-                        className="mouse-icon"
-                      >
-                        <FaChevronDown className="PageDownArrow" />
-                      </div>
-                    </div>
-                  </div>
-                </Fade>
-                <div className="max-widther">
-                  <span id="contentScrollerToTabs"></span>
-                  <div className="stickyNav" id="stickyNav">
-                    <nav>
-                      <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                        <Fade duration={1000}>
-                          <div
-                            className="stickyTab nav-item nav-link active"
-                            id="nav-all-tab"
-                            data-toggle="tab"
-                            href="#nav-all"
-                            role="tab"
-                            aria-controls="nav-all"
-                            aria-selected="true"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            ALL
-                          </div>
-                          <div
-                            className="stickyTab nav-item nav-link"
-                            id="nav-cse1-tab"
-                            data-toggle="tab"
-                            href="#nav-cse1"
-                            role="tab"
-                            aria-controls="nav-cse1"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            CSE 1
-                          </div>
-                          <div
-                            className="stickyTab nav-item nav-link"
-                            id="nav-cse2-tab"
-                            data-toggle="tab"
-                            href="#nav-cse2"
-                            role="tab"
-                            aria-controls="nav-cse2"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            CSE 2
-                          </div>
-                          <div
-                            className="stickyTab nav-item nav-link"
-                            id="nav-cse3-tab"
-                            data-toggle="tab"
-                            href="#nav-cse3"
-                            role="tab"
-                            aria-controls="nav-cse3"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            CSE 3
-                          </div>
-                          <div
-                            className="stickyTab nav-item nav-link"
-                            id="nav-staff-tab"
-                            data-toggle="tab"
-                            href="#nav-staff"
-                            role="tab"
-                            aria-controls="nav-staff"
-                            aria-selected="false"
-                            onClick={() =>
-                              this.scrollToId("contentScrollerToTabs")
-                            }
-                          >
-                            STAFF
-                          </div>
-                        </Fade>
-                      </div>
-                    </nav>
-                  </div>
-
-                  <div className="tab-content" id="nav-tabContent">
-                    <div
-                      className="tab-pane fade show active"
-                      id="nav-all"
-                      role="tabpanel"
-                      aria-labelledby="nav-all-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayAll"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayAll",
-                                    "searchBarAll"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarAll">
-                            <Select
-                              className="searchBar"
-                              options={this.state.allDataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                              onChange={this.searchDealer}
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">CSE 1</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse1Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">CSE 2</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse2Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">CSE 3</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse3Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">STAFF</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.staffData.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle1" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb1" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb1" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo1" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle1" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-cse1"
-                      role="tabpanel"
-                      aria-labelledby="nav-cse1-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayCSE1"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayCSE1",
-                                    "searchBarCSE1"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarCSE1">
-                            <Select
-                              className="searchBar"
-                              options={this.state.cse1DataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">CSE 1</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse1Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-cse2"
-                      role="tabpanel"
-                      aria-labelledby="nav-cse2-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayCSE2"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayCSE2",
-                                    "searchBarCSE2"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarCSE2">
-                            <Select
-                              className="searchBar"
-                              options={this.state.cse2DataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">CSE 2</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse2Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-cse3"
-                      role="tabpanel"
-                      aria-labelledby="nav-cse3-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayCSE3"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayCSE3",
-                                    "searchBarCSE3"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarCSE3">
-                            <Select
-                              className="searchBar"
-                              options={this.state.cse3DataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={
-                                <div>Search for name or roll number...</div>
-                              }
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">CSE 3</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.cse3Data.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="nav-staff"
-                      role="tabpanel"
-                      aria-labelledby="nav-staff-tab"
-                    >
-                      <section className="ftco-section ftco-no-pb">
-                        <div className="searchBarCenter">
-                          <Fade>
-                            <div
-                              className="searchBarOverlay max-widther"
-                              id="searchBarOverlayStaff"
-                            >
-                              <span
-                                className="searchIconSpan"
-                                onClick={() =>
-                                  this.searchBarVisibilitySwap(
-                                    "searchBarOverlayStaff",
-                                    "searchBarStaff"
-                                  )
-                                }
-                              >
-                                <FiSearch className="searchIcon" />
-                              </span>
-                            </div>
-                          </Fade>
-                          <div className="searchBarDiv" id="searchBarStaff">
-                            <Select
-                              className="searchBar"
-                              options={this.state.staffDataOptions}
-                              formatGroupLabel={formatGroupLabel}
-                              isClearable
-                              isSearchable
-                              onChange={this.searchDealer}
-                              placeholder={<div>Search for name...</div>}
-                            />
-                          </div>
-                        </div>
-                        <Fade bottom duration={300}>
-                          <div className="sectionHeader">
-                            <div className="row justify-content-center">
-                              <div className="col-md-12 heading-section text-center">
-                                <span className="subheading">STAFF</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Fade>
-                        <div className="card-list" id="card-list">
-                          {this.state.staffData.map((item, index) => (
-                            <Fade
-                              bottom
-                              duration={400}
-                              key={index}
-                              onReveal={() => this.getThumbImage(item.personId)}
-                            >
-                              <div className="cardStyleProtector">
-                                <div
-                                  className="cardStyle"
-                                  id={"cardStyle2" + item.personId}
-                                >
-                                  <div
-                                    className="card-image-div card-image-div-temp"
-                                    id={"thumb2" + item.personId + "div"}
-                                  >
-                                    <img
-                                      src="#"
-                                      alt="NotLoaded"
-                                      className="card-image"
-                                      id={"thumb2" + item.personId}
-                                    />
-                                  </div>
-                                  <div
-                                    className="card-info"
-                                    id={"cardInfo2" + item.personId}
-                                  >
-                                    <div className="card-info-name">
-                                      {item.name}
-                                    </div>
-                                  </div>
-                                  <div className="card-features">
-                                    <div
-                                      className="card-features-button"
-                                      onClick={() =>
-                                        this.viewDetails(item.personId)
-                                      }
-                                    >
-                                      View Details
-                                    </div>
-                                  </div>
-                                  <div
-                                    className="cardStyleHighlight"
-                                    id={
-                                      "cardStyle2" + item.personId + "Highlight"
-                                    }
-                                  ></div>
-                                </div>
-                              </div>
-                            </Fade>
-                          ))}
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-
-                  <Fade duration={500}>
-                    <div className="detailsModal" id="detailsModal">
-                      <div className="detailsModalScreen"></div>
-                      <div className="detailsModalOuter">
-                        <div
-                          className="navbar-brand-in-details"
-                          onClick={this.pageReload}
-                        >
-                          <FaCode size="30px" className="brandIcon" />
-                          CSE 2020
-                        </div>
-                        <div className="detailsModalCancelDiv">
-                          <MdCancel
-                            className="detailsModalCancel"
-                            onClick={this.closeDetails}
-                          />
-                        </div>
-                        <div
-                          className="detailsModalInner detailsModalStudent"
-                          id="detailsModalStudent"
-                        >
-                          <div className="detailsModalInnerExtra">
-                            <div className="detailsModalInnerUltra">
-                              <Fade delay={500} duration={500}>
-                                <div>
-                                  <div className="detailsModalName">
-                                    {this.state.detailsModalName}
-                                  </div>
-                                  <div className="detailsModalRno">
-                                    {this.state.detailsModalRno}
-                                  </div>
-                                  <div>
-                                    <MdCall className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <a
-                                      className="modalDetail modalHref modalPno"
-                                      href={"tel:" + this.state.detailsModalPno}
-                                    >
-                                      {this.state.detailsModalPno}
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <MdEmail className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <a
-                                      className="modalDetail modalHref"
-                                      href={
-                                        "mailto:" + this.state.detailsModalEmail
-                                      }
-                                    >
-                                      {this.state.detailsModalEmail}
-                                    </a>
-                                  </div>
-                                  <div>
-                                    <MdHome className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <span className="modalDetail">
-                                      {this.state.detailsModalAddress}
-                                    </span>
-                                  </div>
-                                </div>
-                              </Fade>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          className="detailsModalInner detailsModalStaff"
-                          id="detailsModalStaff"
-                        >
-                          <div className="detailsModalInnerExtra">
-                            <div className="detailsModalInnerUltra">
-                              <Fade delay={500} duration={500}>
-                                <div>
-                                  <div className="detailsModalName">
-                                    {this.state.detailsModalName}
-                                  </div>
-                                  <div>
-                                    <MdEmail className="modalIcon" />{" "}
-                                    &nbsp;&nbsp;
-                                    <a
-                                      className="modalDetail modalHref"
-                                      href={
-                                        "mailto:" + this.state.detailsModalEmail
-                                      }
-                                    >
-                                      {this.state.detailsModalEmail}
-                                    </a>
-                                  </div>
-                                </div>
-                              </Fade>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Fade>
-
-                  <div className="max-widther" id="timelineStart">
-                    <div className="picturesArea"></div>
-                    <div className="timelineMain">
-                      <div className="timeliner">
-                        <div className="timelineContainer timelineLeft">
-                          <Fade left>
-                            <div className="timelineContent">
-                              <div className="timelineHeader timelineFirst">
-                                The Beginning
-                              </div>
-                              <p className="timelineMatter">
-                                Regular Entry : July 7th 2016
-                                <br />
-                                Lateral Entry : July 2nd 2017
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                        <div className="timelineContainer timelineRight">
-                          <Fade right>
-                            <div className="timelineContent">
-                              <div className="timelineHeader">
-                                68 Total Subjects
-                                <span
-                                  tabIndex="0"
-                                  className="timelineInfo"
-                                  data-toggle="popover"
-                                  data-trigger="focus hover"
-                                  data-placement="auto"
-                                  title="Semester wise subject count"
-                                  data-html="true"
-                                  data-content="<p>
-                                                Semester 1 : 7 Subjects, 2 Labs<br/>
-                                                Semester 2 : 7 Subjects, 3 Labs<br/>
-                                                Semester 3 : 6 Subjects, 3 Labs<br/>
-                                                Semester 4 : 6 Subjects, 2 Labs<br/>
-                                                Semester 5 : 6 Subjects, 3 Labs<br/>
-                                                Semester 6 : 6 Subjects, 3 Labs, 1 Termpaper<br/>
-                                                Semester 7 : 5 Subjects, 1 Lab, 1 Mini Project, 1 Internship<br/>
-                                                Semester 8 : 3 Subjects, 1 Lab, 1 Major Project<br/>
-                                              </p>"
-                                >
-                                  <FiInfo className="FiInfoTimeline" />
-                                </span>
-                              </div>
-                              <p className="timelineMatter">
-                                46 Theory subjects
-                                <br />
-                                18 Labs
-                                <br />
-                                1 Termpaper
-                                <br />
-                                1 Mini Project
-                                <br />
-                                1 Internship
-                                <br />1 Major Project
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                        <div className="timelineContainer timelineLeft">
-                          <Fade left>
-                            <div className="timelineContent">
-                              <div className="timelineHeader">Structure</div>
-                              <p className="timelineMatter">
-                                4 Years
-                                <br />
-                                8 Semesters
-                                <br />
-                                <i>Each semester :</i>
-                                <br />
-                                4 Internal Exams(2 Assignments, 2 Sessionals)
-                                <br />1 Semester End Exams
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                        <div className="timelineContainer timelineRight">
-                          <Fade right>
-                            <div className="timelineContent">
-                              <div className="timelineHeader timelineEnd">
-                                The End
-                              </div>
-                              <p className="timelineMatter">
-                                We have the most unexpected ending. Corona Virus
-                                became a major threat for the entire world and
-                                the whole country has been locked down since
-                                22nd March 2020, else we would've completed our
-                                final exams by 11th April 2020. I'll update the
-                                date of our graduation when things fall in
-                                place.
-                                <br />
-                                <br />
-                                <strong>Update : </strong>
-                                Finally we completed our final exams on 18th Sep
-                                2020. And the official date of leaving the
-                                college is 30th Nov 2020 as per TC.
-                              </p>
-                            </div>
-                          </Fade>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="max-widther midler">
-                    <div className="endingQuote">The class of 2020</div>
-                    <div className="totalVisits">
-                      ~ This website is visited{" "}
-                      <span className="visitsNumber">
-                        {this.state.totalVisits}
-                      </span>{" "}
-                      times ~
-                    </div>
-                  </div>
-                  <footer className="footer" id="footer">
-                    <Fade>
-                      <div>
-                        <nav className="footer__nav shuffle shuffled">
-                          <section className="footer__col footer__col--intro">
-                            <div
-                              className="navbar-brand"
-                              onClick={this.pageReload}
-                            >
-                              <FaCode size="30px" className="brandIcon" />
-                              CSE 2020
-                            </div>
-                            <p className="footer__slogan">
-                              This app helps you
-                              <strong>
-                                {" "}
-                                Find and reconnect with B.Tech classmates.
-                              </strong>
-                              <br />
-                              This app will have your back when you wanna see
-                              the faces of our classmates or reconnect with
-                              them, providing you with their pictures and
-                              contact details.
-                              <br />
-                              <strong>* </strong>
-                              If Heroku and MongoDB doesn't remove their free
-                              plans, this app will exist forever. And if i ever
-                              update this app to a paid custom domain, i'll let
-                              you guys know.
-                              <br />
-                            </p>
-                          </section>
-                          <section className="footer__col background--active">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title">Explore</h4>
-                              <div className="footer__nav-list">
-                                <div
-                                  className="footer__link"
-                                  onClick={() => this.directPageShift("App")}
-                                >
-                                  Home
-                                </div>
-                                <div
-                                  className="footer__link"
-                                  onClick={() => this.directPageShift("footer")}
-                                >
-                                  About
-                                </div>
-                                <div
-                                  className="footer__link"
-                                  onClick={() =>
-                                    this.directPageShift("timelineStart")
-                                  }
-                                >
-                                  Timeline
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                          <section className="footer__col">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title">Comment</h4>
-                              <a
-                                href="mailto:vrsec2020@gmail.com?subject=Feature%20Suggestion"
-                                className="footer__link"
-                              >
-                                Suggest a feature
-                              </a>
-                              <a
-                                href="mailto:vrsec2020@gmail.com?subject=App%20Feedback"
-                                className="footer__link"
-                              >
-                                App feedback
-                              </a>
-                              <a
-                                href="mailto:vrsec2020@gmail.com?subject=Bug%20Report"
-                                className="footer__link"
-                              >
-                                Report a bug
-                              </a>
-                            </div>
-                          </section>
-                          <section className="footer__col footer__col--mobile footer__hide--large background--active">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title">Contact</h4>
-                              <a
-                                href="mailto:vrsec2020@gmail.com"
-                                className="footer__link"
-                              >
-                                vrsec2020@gmail.com
-                              </a>
-                              <a href="tel:9493976733" className="footer__link">
-                                9493976733
-                              </a>
-                            </div>
-                          </section>
-                          <section className="footer__col background--active">
-                            <div className="footer__col-wrap">
-                              <h4 className="footer__col-title">Controls</h4>
-                              <div
-                                onClick={() =>
-                                  this.setState({
-                                    requestAdmin: true,
-                                  })
-                                }
-                                className="footer__link no-barba"
-                              >
-                                Admin
-                              </div>
-                            </div>
-                          </section>
-                          <small className="footer__legal">
-                            <span
-                              className="madeBy"
-                              tabIndex="0"
-                              data-toggle="popover"
-                              data-trigger="focus hover"
-                              data-placement="auto"
-                              data-html="true"
-                              data-content={`<img src = ${madeByImage} class = "madeByImageTag" alt = "Guna Chand"/>`}
-                            >
-                              Made With{" "}
-                              <span className="madeByIcon">
-                                <IoIosHeart />
-                              </span>{" "}
-                              By{" "}
-                              <span className="madeByName">
-                                Guna Chand Dakavarapu
-                              </span>
-                            </span>
-                            <br />© 2020 CSE2020. All Rights Reserved.
-                          </small>
-                        </nav>
-                      </div>
-                    </Fade>
-                  </footer>
-                </div>
-              </div>
-            );
-          } else if (this.state.requestAdmin === true) {
-            if (this.state.isAdmin === "YesYet") {
-              if (this.state.confirmAdm === "nopeisyes") {
-                return (
-                  <div id="App" className="App">
-                    <Fade
-                      top
-                      duration={500}
-                      when={this.state.showTimeoutMsgTrigger}
-                    >
-                      <div className="timeoutToast" id="timeoutToast">
-                        {this.state.timeoutMsg}{" "}
-                        <MdCancel
-                          className="timeoutMsgCloserIcon"
-                          title="Tap to close"
-                          onClick={this.timeoutMsgCloser}
-                        />
-                      </div>
-                    </Fade>
-                    <div className="authForm max-widther">
-                      <div className="authBordered">
-                        <div className="authHead">Add/Update people</div>
-                        <div className="authFormDiv">
-                          <form
-                            id="adminUploadForm"
-                            onSubmit={this.uploadNewData}
-                          >
-                            <div className="custom-control custom-checkbox">
-                              <input
-                                type="checkbox"
-                                id="updatePhoto"
-                                name="updatePhoto"
-                                className="custom-control-input"
-                                value="updatePhoto"
-                                onClick={this.updatePhotoInputChange}
-                              />
-                              <label
-                                htmlFor="updatePhoto"
-                                className="custom-control-label updatePhotoLabel"
-                              >
-                                Update only picture(Students Only)
-                              </label>
-                            </div>
-                            <div
-                              className="categoryInput"
-                              id="categoryInputDiv"
-                            >
-                              <select
-                                id="categoryInput"
-                                className="authInputDropdown custom-select"
-                                defaultValue="select"
-                                onChange={this.handleCategoryInputChange}
-                                required
-                              >
-                                <option
-                                  value="select"
-                                  style={{
-                                    color: "gray",
-                                  }}
-                                  disabled
-                                >
-                                  Select category
-                                </option>
-                                <option value="cse1">CSE 1</option>
-                                <option value="cse2">CSE 2</option>
-                                <option value="cse3">CSE 3</option>
-                                <option value="staff">Staff</option>
-                              </select>
-                            </div>
-                            <div id="rnoInputDiv">
-                              <input
-                                className="authInput"
-                                id="rnoInput"
-                                type="text"
-                                placeholder="Enter roll number"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="nameInputDiv">
-                              <input
-                                className="authInput"
-                                id="nameInput"
-                                type="text"
-                                placeholder="Enter the name"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="pnoInputDiv">
-                              <input
-                                className="authInput"
-                                id="pnoInput"
-                                type="text"
-                                placeholder="Enter phone number"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="emailInputDiv">
-                              <input
-                                className="authInput"
-                                id="emailInput"
-                                type="email"
-                                placeholder="Enter email"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div id="addressInputDiv">
-                              <input
-                                className="authInput"
-                                id="addressInput"
-                                type="text"
-                                placeholder="Enter address"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <input
-                                className="authInput"
-                                id="updateKeyInput"
-                                type="password"
-                                placeholder="Key to update"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div className="custom-file fileSelect">
-                              <input
-                                type="file"
-                                className="custom-file-input fileSelectInput"
-                                id="fileSelectInput"
-                                required
-                              />
-                              <label
-                                className="custom-file-label fileSelectLabel"
-                                id="fileSelectLabel"
-                                htmlFor="fileSelectInput"
-                              >
-                                Choose file...
-                              </label>
-                            </div>
-                            <div className="tempImgDiv">
-                              <div className="tempImgDivHead">Main</div>
-                              <img
-                                className="tempImg"
-                                id="tempImg"
-                                src=""
-                                alt=""
-                              />
-                            </div>
-                            <div
-                              className="tempImgDiv tempImgThumb"
-                              id="tempImgThumb"
-                            >
-                              <div className="tempImgDivHead">Thumbnail</div>
-                              <img
-                                className="tempImg"
-                                id="tempImg2"
-                                src=""
-                                alt=""
-                              />
-                            </div>
-                            <div className="authErrorDiv">&#160;</div>
-                            <button
-                              type="submit"
-                              id="uploadButton"
-                              className="authSubmit"
-                            >
-                              UPLOAD
-                            </button>
-                            <button
-                              id="updatePictureButton"
-                              className="authSubmit updatePictureButton"
-                              onClick={this.updatePhoto}
-                            >
-                              UPDATE PICTURE
-                            </button>
-                          </form>
-                          <button
-                            className="authCancel"
-                            onClick={() =>
-                              this.setState({
-                                requestAdmin: false,
-                              })
-                            }
-                          >
-                            CANCEL
-                          </button>
-                        </div>
-                      </div>
-                      <div className="authBordered">
-                        <div className="authHead">Change App Password</div>
-                        <div className="authFormDiv">
-                          <form
-                            id="appPasswordForm"
-                            onSubmit={this.appPasswordChange}
-                          >
-                            <div>
-                              <input
-                                className="authInput"
-                                id="appPasswordInput"
-                                type="text"
-                                placeholder="Enter new password"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <input
-                                className="authInput"
-                                id="appPasswordUpdateKeyInput"
-                                type="password"
-                                placeholder="Key to update"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <button
-                              type="submit"
-                              form="appPasswordForm"
-                              className="authSubmit"
-                            >
-                              UPLOAD
-                            </button>
-                          </form>
-                          <button
-                            className="authCancel"
-                            onClick={() =>
-                              this.setState({
-                                requestAdmin: false,
-                              })
-                            }
-                          >
-                            CANCEL
-                          </button>
-                        </div>
-                      </div>
-                      <div className="authBordered">
-                        <div className="authHead">Change Admin Password</div>
-                        <div className="authFormDiv">
-                          <form
-                            id="adminPasswordForm"
-                            onSubmit={this.adminPasswordChange}
-                          >
-                            <div>
-                              <input
-                                className="authInput"
-                                id="adminPasswordInput"
-                                type="text"
-                                placeholder="Enter new password"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <input
-                                className="authInput"
-                                id="adminPasswordUpdateKeyInput"
-                                type="password"
-                                placeholder="Key to update"
-                                autoComplete="off"
-                                required
-                              />
-                            </div>
-                            <button
-                              type="submit"
-                              form="adminPasswordForm"
-                              className="authSubmit"
-                            >
-                              UPLOAD
-                            </button>
-                          </form>
-                          <button
-                            className="authCancel"
-                            onClick={() =>
-                              this.setState({
-                                requestAdmin: false,
-                              })
-                            }
-                          >
-                            CANCEL
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div id="App" className="App">
-                    <Fade
-                      top
-                      duration={500}
-                      when={this.state.showTimeoutMsgTrigger}
-                    >
-                      <div className="timeoutToast" id="timeoutToast">
-                        {this.state.timeoutMsg}{" "}
-                        <MdCancel
-                          className="timeoutMsgCloserIcon"
-                          title="Tap to close"
-                          onClick={this.timeoutMsgCloser}
-                        />
-                      </div>
-                    </Fade>
-                    <div className="authForm">
-                      <div className="authContainer">
-                        <div className="authHead">
-                          Good try! But i know this loophole and patched it,
-                          Sorry.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-            } else if (this.state.isAdmin === "NotYet") {
+            } else {
               return (
                 <div id="App" className="App">
                   <Fade
@@ -5067,66 +3039,93 @@ class App extends React.Component {
                       />
                     </div>
                   </Fade>
-                  <div className="authForm max-widther">
+                  <div className="authForm">
                     <div className="authContainer">
-                      <div className="authHead">Admin Authentication</div>
-                      <div className="authFormDiv">
-                        <form onSubmit={this.authenticateAdmin}>
-                          <input
-                            className="authInput"
-                            id="adminInput"
-                            type="password"
-                            placeholder="Enter the key"
-                            autoComplete="off"
-                            required
-                          />
-                          <div className="authErrorDiv" id="adminErrorDiv">
-                            &#160;
-                          </div>
-                          <button type="submit" className="authSubmit">
-                            LOGIN
-                          </button>
-                        </form>
-                        <button
-                          className="authCancel"
-                          onClick={() =>
-                            this.setState({
-                              requestAdmin: false,
-                            })
-                          }
-                        >
-                          CANCEL
-                        </button>
+                      <div className="authHead">
+                        Good try! But i know this loophole and patched it,
+                        Sorry.
                       </div>
                     </div>
                   </div>
                 </div>
               );
             }
-          }
-        } else {
-          return (
-            <div id="App" className="App">
-              <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
-                <div className="timeoutToast" id="timeoutToast">
-                  {this.state.timeoutMsg}{" "}
-                  <MdCancel
-                    className="timeoutMsgCloserIcon"
-                    title="Tap to close"
-                    onClick={this.timeoutMsgCloser}
-                  />
-                </div>
-              </Fade>
-              <div className="authForm">
-                <div className="authContainer">
-                  <div className="authHead">
-                    Good try! But i know this loophole and patched it, Sorry.
+          } else if (this.state.isAdmin === "NotYet") {
+            return (
+              <div id="App" className="App">
+                <Fade
+                  top
+                  duration={500}
+                  when={this.state.showTimeoutMsgTrigger}
+                >
+                  <div className="timeoutToast" id="timeoutToast">
+                    {this.state.timeoutMsg}{" "}
+                    <MdCancel
+                      className="timeoutMsgCloserIcon"
+                      title="Tap to close"
+                      onClick={this.timeoutMsgCloser}
+                    />
+                  </div>
+                </Fade>
+                <div className="authForm max-widther">
+                  <div className="authContainer">
+                    <div className="authHead">Admin Authentication</div>
+                    <div className="authFormDiv">
+                      <form onSubmit={this.authenticateAdmin}>
+                        <input
+                          className="authInput"
+                          id="adminInput"
+                          type="password"
+                          placeholder="Enter the key"
+                          autoComplete="off"
+                          required
+                        />
+                        <div className="authErrorDiv" id="adminErrorDiv">
+                          &#160;
+                        </div>
+                        <button type="submit" className="authSubmit">
+                          LOGIN
+                        </button>
+                      </form>
+                      <button
+                        className="authCancel"
+                        onClick={() =>
+                          this.setState({
+                            requestAdmin: false,
+                          })
+                        }
+                      >
+                        CANCEL
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
+            );
+          }
         }
+      } else {
+        return (
+          <div id="App" className="App">
+            <Fade top duration={500} when={this.state.showTimeoutMsgTrigger}>
+              <div className="timeoutToast" id="timeoutToast">
+                {this.state.timeoutMsg}{" "}
+                <MdCancel
+                  className="timeoutMsgCloserIcon"
+                  title="Tap to close"
+                  onClick={this.timeoutMsgCloser}
+                />
+              </div>
+            </Fade>
+            <div className="authForm">
+              <div className="authContainer">
+                <div className="authHead">
+                  Good try! But i know this loophole and patched it, Sorry.
+                </div>
+              </div>
+            </div>
+          </div>
+        );
       }
     }
   }

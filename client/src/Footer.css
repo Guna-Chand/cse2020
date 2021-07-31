@@ -47,23 +47,8 @@
   min-width: 100%;
 }
 
-.footer__col {
-  float: left;
-  line-height: 25px;
-  width: 50%;
-}
-
 section {
   display: block;
-}
-
-a {
-  text-decoration: none;
-}
-
-a {
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
 }
 
 .footer__slogan {
@@ -116,16 +101,8 @@ p {
   display: block;
 }
 
-.footer__col-title ~ .footer__col-title {
-  margin-top: 22px;
-}
-
 .footer__hide--small {
   display: none;
-}
-
-.footer__col--mobile {
-  clear: left;
 }
 
 .footer__legal {
