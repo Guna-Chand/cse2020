@@ -361,13 +361,18 @@ app.post("/initialFireup", (req, res) => {
 
 app.post("/authenticator", (req, res) => {
   let key = req.body.key;
-  key = SHA512(key + "velagapudi").toString();
-  key = key.slice(5);
+  let autoLogin = req.body.autoLogin;
+  if(!autoLogin){
+    key = SHA512(key + "velagapudi").toString();
+    key = key.slice(5);
+  }
 
   authDoc
     .find({ inde: 1 })
     .then((resu) => {
       if (resu[0].key === key) {
+        if(autoLogin)
+          key = "";
         studentDoc
           .find({})
           .then((result) => {
@@ -391,7 +396,7 @@ app.post("/authenticator", (req, res) => {
                 });
               }
             });
-            res.send([1, resultUpdated]);
+            res.send([1, resultUpdated, key]);
           })
           .catch((error) => {
             res.send([
@@ -401,7 +406,7 @@ app.post("/authenticator", (req, res) => {
             console.log(error);
           });
       } else {
-        res.send([0, "The key is incorrect"]);
+        res.send([0, (autoLogin) ? "Last login expired, Please login again." : "The key is incorrect"]);
       }
     })
     .catch((errr) => {

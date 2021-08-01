@@ -101,6 +101,10 @@ class App extends React.Component {
       .catch((err) => {
         console.error(err);
       });
+
+    if (localStorage.getItem("x_info")) {
+      this.authenticate(true, localStorage.getItem("x_info"));
+    }
   }
 
   dataURLtoFile(dataurl, filename) {
@@ -694,19 +698,23 @@ class App extends React.Component {
     return [temp, temp1];
   };
 
-  authenticate = (e) => {
-    e.preventDefault();
-    document.getElementById("authErrorDiv").innerHTML = "&#160;";
+  authenticate = (autoLogin, key) => {
+    // e.preventDefault();
+    if (!autoLogin) {
+      document.getElementById("authErrorDiv").innerHTML = "&#160;";
+      key = document.getElementById("authInput").value;
+    }
     this.setState({ authenticated: "loading" });
-    let key = document.getElementById("authInput").value;
     axios
-      .post("/authenticator", { key: key })
+      .post("/authenticator", { key: key, autoLogin: autoLogin })
       .then((res) => {
         if (res.data[0] === 0) {
           this.setState({ authenticated: false }, () => {
             document.getElementById("authErrorDiv").innerHTML = res.data[1];
           });
         } else if (res.data[0] === 1) {
+          if (!autoLogin)
+            localStorage.setItem("x_info", res.data[2])
           let cse1Data = [];
           let cse2Data = [];
           let cse3Data = [];
@@ -1191,7 +1199,7 @@ class App extends React.Component {
             <div className="authContainer">
               <div className="authHead">Authenticate yourself</div>
               <div className="authFormDiv">
-                <form onSubmit={this.authenticate}>
+                <form onSubmit={e => this.authenticate(false, null)}>
                   <input
                     className="authInput"
                     id="authInput"
@@ -1214,10 +1222,10 @@ class App extends React.Component {
                 </div>
                 <div>
                   <a
-                    href="mailto:vrsec2020@gmail.com?subject=Problem%20with%20login/forgot%20the%20key"
+                    href="mailto:vrsec2020@gmail.com?subject=Problem%20with%20login%20/%20Forgot%20the%20key"
                     className="authFooterDown"
                   >
-                    CONTACT NOW
+                    CONTACT HERE
                   </a>
                 </div>
               </div>
@@ -2529,14 +2537,14 @@ class App extends React.Component {
                                 title="Semester wise subject count"
                                 data-html="true"
                                 data-content="<p>
-                                                Semester 1 : 7 Subjects, 2 Labs<br/>
-                                                Semester 2 : 7 Subjects, 3 Labs<br/>
-                                                Semester 3 : 6 Subjects, 3 Labs<br/>
-                                                Semester 4 : 6 Subjects, 2 Labs<br/>
-                                                Semester 5 : 6 Subjects, 3 Labs<br/>
-                                                Semester 6 : 6 Subjects, 3 Labs, 1 Termpaper<br/>
-                                                Semester 7 : 5 Subjects, 1 Lab, 1 Mini Project, 1 Internship<br/>
-                                                Semester 8 : 3 Subjects, 1 Lab, 1 Major Project<br/>
+                                                <b>Semester 1 :</b> <i>7 Subjects, 2 Labs</i><br/>
+                                                <b>Semester 2 :</b> <i>7 Subjects, 3 Labs</i><br/>
+                                                <b>Semester 3 :</b> <i>6 Subjects, 3 Labs</i><br/>
+                                                <b>Semester 4 :</b> <i>6 Subjects, 2 Labs</i><br/>
+                                                <b>Semester 5 :</b> <i>6 Subjects, 3 Labs</i><br/>
+                                                <b>Semester 6 :</b> <i>6 Subjects, 3 Labs, 1 Termpaper</i><br/>
+                                                <b>Semester 7 :</b> <i>5 Subjects, 1 Lab, 1 Mini Project, 1 Internship</i><br/>
+                                                <b>Semester 8 :</b> <i>3 Subjects, 1 Lab, 1 Major Project</i><br/>
                                               </p>"
                               >
                                 <FiInfo className="FiInfoTimeline" />
