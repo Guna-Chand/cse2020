@@ -20,5 +20,9 @@
     "googleapis": "^52.1.0",
     "mongoose": "^5.13.4",
     "nodemailer": "^6.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Guna-Chand/cse2020.git"
   }
 }
