@@ -142,6 +142,7 @@ class DataDisplay extends React.Component {
                 </div>
                 {this.props.data.map((dataItem, index) => (
                     <CardList 
+                        key={index}
                         data={dataItem} 
                         getThumbImage={this.props.getThumbImage} 
                         type={this.state.type} 
