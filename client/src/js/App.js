@@ -1264,7 +1264,7 @@ class App extends React.Component {
               xmlSpace="preserve"
             >
               <filter id="code" x="0%" y="0%" width="100%" height="100%">
-                <feImage xlinkHref={process.env.PUBLIC_URL + "./favicon.png"} />
+                <feImage xlinkHref={process.env.PUBLIC_URL + "/favicon.png"} />
               </filter>
               <circle
                 filter="url(#code)"
@@ -1350,7 +1350,6 @@ class App extends React.Component {
                       </div>
                       <form id="otpEmailForm" onSubmit={this.requestOTP}>
                         <div className="form-group">
-                          <label htmlFor="approveEmail">Email</label>
                           <input
                             type="email"
                             className="form-control"
@@ -1377,7 +1376,7 @@ class App extends React.Component {
                     <div className="modal-footer">
                       <button
                         type="button"
-                        className="btn btn-secondary"
+                        className="btn btn-outline-danger approve-buttons"
                         data-dismiss="modal"
                       >
                         Close
@@ -1385,7 +1384,7 @@ class App extends React.Component {
                       <button
                         type="submit"
                         form="otpEmailForm"
-                        className="btn btn-primary"
+                        className="btn btn-outline-primary approve-buttons"
                         id="requestOTP"
                       >
                         Request OTP
@@ -1398,7 +1397,7 @@ class App extends React.Component {
                       </button>
                       <button
                         type="button"
-                        className="btn btn-primary"
+                        className="btn btn-outline-primary approve-buttons"
                         id="verifyOTP"
                         onClick={this.verifyOTP}
                       >
@@ -2627,8 +2626,7 @@ class App extends React.Component {
                       <nav className="footer__nav shuffle shuffled">
                         <section className="footer__col footer__col--intro">
                           <div
-                            className="navbar-brand"
-                            onClick={this.pageReload}
+                            className="navbar-brand navbar-brand-about"
                           >
                             <FaCode size="30px" className="brandIcon" />
                             CSE 2020
