@@ -3,46 +3,22 @@ import "../css/App.css";
 import "../css/AppMobile.css";
 import "../css/Timeline.css";
 import "../css/Footer.css";
+import "./components/DataDisplay/CardList";
 import Compress from "compress.js";
 import { isMobile } from "react-device-detect";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
-import Select from "react-select";
 import Zoom from "react-reveal/Zoom";
 import { FaCode, FaGraduationCap, FaChevronDown } from "react-icons/fa";
-import { FiSearch, FiInfo } from "react-icons/fi";
+import { FiInfo } from "react-icons/fi";
 import { MdCancel, MdCall, MdEmail, MdHome } from "react-icons/md";
 import { IoIosHeart } from "react-icons/io";
 import linesBackground from "../images/lines.png";
 import madeByImage from "../images/madeByImage.jpg";
 import OtpInput from "react-otp-input";
+import DataDisplay from "./components/DataDisplay/DataDisplay";
 
 const compress = new Compress();
-
-const groupStyles = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-};
-const groupBadgeStyles = {
-  backgroundColor: "#EBECF0",
-  borderRadius: "2em",
-  color: "#172B4D",
-  display: "inline-block",
-  fontSize: 12,
-  fontWeight: "normal",
-  lineHeight: "1",
-  minWidth: 1,
-  padding: "0.16666666666667em 0.5em",
-  textAlign: "center",
-};
-
-const formatGroupLabel = (data) => (
-  <div style={groupStyles}>
-    <span>{data.label}</span>
-    <span style={groupBadgeStyles}>{data.options.length}</span>
-  </div>
-);
 
 const personImageDataGlobal = [];
 const personDetailsDataGlobal = [];
@@ -489,25 +465,6 @@ class App extends React.Component {
             });
         }
       }
-    }
-  };
-
-  searchDealer = (e) => {
-    try {
-      if (e !== null) {
-        let id = "#" + e.value;
-        window.location = id;
-        document
-          .getElementById(e.value + "Highlight")
-          .classList.toggle("HighlightBlinker");
-        setTimeout(() => {
-          document
-            .getElementById(e.value + "Highlight")
-            .classList.toggle("HighlightBlinker");
-        }, 1200);
-      }
-    } catch (err) {
-      console.log(err);
     }
   };
 
@@ -1047,16 +1004,6 @@ class App extends React.Component {
       },
       800
     );
-  };
-
-  searchBarVisibilitySwap = (decoy, main) => {
-    document.getElementById(decoy).style.opacity = 0;
-    document.getElementById(main).style.visibility = "visible";
-    setTimeout(() => {
-      document.getElementById(main).style.marginTop = "10px";
-      document.getElementById(decoy).style.visibility = "hidden";
-      document.getElementById(main).style.opacity = 1;
-    }, 500);
   };
 
   directPageShift = (e) => {
@@ -1691,297 +1638,13 @@ class App extends React.Component {
                     role="tabpanel"
                     aria-labelledby="nav-all-tab"
                   >
-                    <section className="ftco-section ftco-no-pb">
-                      <div className="searchBarCenter">
-                        <Fade>
-                          <div
-                            className="searchBarOverlay max-widther"
-                            id="searchBarOverlayAll"
-                          >
-                            <span
-                              className="searchIconSpan"
-                              onClick={() =>
-                                this.searchBarVisibilitySwap(
-                                  "searchBarOverlayAll",
-                                  "searchBarAll"
-                                )
-                              }
-                            >
-                              <FiSearch className="searchIcon" />
-                            </span>
-                          </div>
-                        </Fade>
-                        <div className="searchBarDiv" id="searchBarAll">
-                          <Select
-                            className="searchBar"
-                            options={this.state.allDataOptions}
-                            formatGroupLabel={formatGroupLabel}
-                            isClearable
-                            isSearchable
-                            placeholder={
-                              <div>Search for name or roll number...</div>
-                            }
-                            onChange={this.searchDealer}
-                          />
-                        </div>
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                CSE 1
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.cse1Data.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle1" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb1" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb1" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo1" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle1" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                CSE 2
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.cse2Data.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle1" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb1" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb1" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo1" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle1" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                CSE 3
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.cse3Data.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle1" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb1" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb1" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo1" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle1" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                STAFF
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.staffData.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle1" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb1" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb1" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo1" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle1" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                    </section>
+                    <DataDisplay 
+                      data={[this.state.cse1Data, this.state.cse2Data, this.state.cse3Data, this.state.staffData]} 
+                      getThumbImage={this.getThumbImage} 
+                      viewDetails={this.viewDetails} 
+                      category="all"
+                      dataOptions={this.state.allDataOptions}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -1989,105 +1652,13 @@ class App extends React.Component {
                     role="tabpanel"
                     aria-labelledby="nav-cse1-tab"
                   >
-                    <section className="ftco-section ftco-no-pb">
-                      <div className="searchBarCenter">
-                        <Fade>
-                          <div
-                            className="searchBarOverlay max-widther"
-                            id="searchBarOverlayCSE1"
-                          >
-                            <span
-                              className="searchIconSpan"
-                              onClick={() =>
-                                this.searchBarVisibilitySwap(
-                                  "searchBarOverlayCSE1",
-                                  "searchBarCSE1"
-                                )
-                              }
-                            >
-                              <FiSearch className="searchIcon" />
-                            </span>
-                          </div>
-                        </Fade>
-                        <div className="searchBarDiv" id="searchBarCSE1">
-                          <Select
-                            className="searchBar"
-                            options={this.state.cse1DataOptions}
-                            formatGroupLabel={formatGroupLabel}
-                            isClearable
-                            isSearchable
-                            onChange={this.searchDealer}
-                            placeholder={
-                              <div>Search for name or roll number...</div>
-                            }
-                          />
-                        </div>
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                CSE 1
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.cse1Data.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle2" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb2" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb2" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo2" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle2" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                    </section>
+                    <DataDisplay
+                      data={[this.state.cse1Data]}
+                      getThumbImage={this.getThumbImage}
+                      viewDetails={this.viewDetails}
+                      category="cse1"
+                      dataOptions={this.state.cse1DataOptions}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -2095,105 +1666,13 @@ class App extends React.Component {
                     role="tabpanel"
                     aria-labelledby="nav-cse2-tab"
                   >
-                    <section className="ftco-section ftco-no-pb">
-                      <div className="searchBarCenter">
-                        <Fade>
-                          <div
-                            className="searchBarOverlay max-widther"
-                            id="searchBarOverlayCSE2"
-                          >
-                            <span
-                              className="searchIconSpan"
-                              onClick={() =>
-                                this.searchBarVisibilitySwap(
-                                  "searchBarOverlayCSE2",
-                                  "searchBarCSE2"
-                                )
-                              }
-                            >
-                              <FiSearch className="searchIcon" />
-                            </span>
-                          </div>
-                        </Fade>
-                        <div className="searchBarDiv" id="searchBarCSE2">
-                          <Select
-                            className="searchBar"
-                            options={this.state.cse2DataOptions}
-                            formatGroupLabel={formatGroupLabel}
-                            isClearable
-                            isSearchable
-                            onChange={this.searchDealer}
-                            placeholder={
-                              <div>Search for name or roll number...</div>
-                            }
-                          />
-                        </div>
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                CSE 2
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.cse2Data.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle2" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb2" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb2" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo2" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle2" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                    </section>
+                    <DataDisplay
+                      data={[this.state.cse2Data]}
+                      getThumbImage={this.getThumbImage}
+                      viewDetails={this.viewDetails}
+                      category="cse2"
+                      dataOptions={this.state.cse2DataOptions}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -2201,105 +1680,13 @@ class App extends React.Component {
                     role="tabpanel"
                     aria-labelledby="nav-cse3-tab"
                   >
-                    <section className="ftco-section ftco-no-pb">
-                      <div className="searchBarCenter">
-                        <Fade>
-                          <div
-                            className="searchBarOverlay max-widther"
-                            id="searchBarOverlayCSE3"
-                          >
-                            <span
-                              className="searchIconSpan"
-                              onClick={() =>
-                                this.searchBarVisibilitySwap(
-                                  "searchBarOverlayCSE3",
-                                  "searchBarCSE3"
-                                )
-                              }
-                            >
-                              <FiSearch className="searchIcon" />
-                            </span>
-                          </div>
-                        </Fade>
-                        <div className="searchBarDiv" id="searchBarCSE3">
-                          <Select
-                            className="searchBar"
-                            options={this.state.cse3DataOptions}
-                            formatGroupLabel={formatGroupLabel}
-                            isClearable
-                            isSearchable
-                            onChange={this.searchDealer}
-                            placeholder={
-                              <div>Search for name or roll number...</div>
-                            }
-                          />
-                        </div>
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                CSE 3
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.cse3Data.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle2" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb2" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb2" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo2" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle2" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                    </section>
+                    <DataDisplay
+                      data={[this.state.cse3Data]}
+                      getThumbImage={this.getThumbImage}
+                      viewDetails={this.viewDetails}
+                      category="cse3"
+                      dataOptions={this.state.cse3DataOptions}
+                    />
                   </div>
                   <div
                     className="tab-pane fade"
@@ -2307,103 +1694,13 @@ class App extends React.Component {
                     role="tabpanel"
                     aria-labelledby="nav-staff-tab"
                   >
-                    <section className="ftco-section ftco-no-pb">
-                      <div className="searchBarCenter">
-                        <Fade>
-                          <div
-                            className="searchBarOverlay max-widther"
-                            id="searchBarOverlayStaff"
-                          >
-                            <span
-                              className="searchIconSpan"
-                              onClick={() =>
-                                this.searchBarVisibilitySwap(
-                                  "searchBarOverlayStaff",
-                                  "searchBarStaff"
-                                )
-                              }
-                            >
-                              <FiSearch className="searchIcon" />
-                            </span>
-                          </div>
-                        </Fade>
-                        <div className="searchBarDiv" id="searchBarStaff">
-                          <Select
-                            className="searchBar"
-                            options={this.state.staffDataOptions}
-                            formatGroupLabel={formatGroupLabel}
-                            isClearable
-                            isSearchable
-                            onChange={this.searchDealer}
-                            placeholder={<div>Search for name...</div>}
-                          />
-                        </div>
-                      </div>
-                      <Fade bottom duration={300}>
-                        <div className="sectionHeader">
-                          <div className="row justify-content-center">
-                            <div className="col-md-12 heading-section text-center">
-                              <span className="subheading">
-                                STAFF
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </Fade>
-                      <div className="card-list" id="card-list">
-                        {this.state.staffData.map((item, index) => (
-                          <Fade
-                            bottom
-                            duration={400}
-                            key={index}
-                            onReveal={() => this.getThumbImage(item.personId)}
-                          >
-                            <div className="cardStyleProtector">
-                              <div
-                                className="cardStyle"
-                                id={"cardStyle2" + item.personId}
-                              >
-                                <div
-                                  className="card-image-div card-image-div-temp"
-                                  id={"thumb2" + item.personId + "div"}
-                                >
-                                  <img
-                                    src="#"
-                                    alt="NotLoaded"
-                                    className="card-image"
-                                    id={"thumb2" + item.personId}
-                                  />
-                                </div>
-                                <div
-                                  className="card-info"
-                                  id={"cardInfo2" + item.personId}
-                                >
-                                  <div className="card-info-name">
-                                    {item.name}
-                                  </div>
-                                </div>
-                                <div className="card-features">
-                                  <div
-                                    className="card-features-button"
-                                    onClick={() =>
-                                      this.viewDetails(item.personId)
-                                    }
-                                  >
-                                    View Details
-                                  </div>
-                                </div>
-                                <div
-                                  className="cardStyleHighlight"
-                                  id={
-                                    "cardStyle2" + item.personId + "Highlight"
-                                  }
-                                ></div>
-                              </div>
-                            </div>
-                          </Fade>
-                        ))}
-                      </div>
-                    </section>
+                    <DataDisplay
+                      data={[this.state.staffData]}
+                      getThumbImage={this.getThumbImage}
+                      viewDetails={this.viewDetails}
+                      category="staff"
+                      dataOptions={this.state.staffDataOptions}
+                    />
                   </div>
                 </div>
 
