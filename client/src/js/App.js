@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
-import "./AppMobile.css";
-import "./Timeline.css";
-import "./Footer.css";
+import "../css/App.css";
+import "../css/AppMobile.css";
+import "../css/Timeline.css";
+import "../css/Footer.css";
 import Compress from "compress.js";
 import { isMobile } from "react-device-detect";
 import axios from "axios";
@@ -13,8 +13,8 @@ import { FaCode, FaGraduationCap, FaChevronDown } from "react-icons/fa";
 import { FiSearch, FiInfo } from "react-icons/fi";
 import { MdCancel, MdCall, MdEmail, MdHome } from "react-icons/md";
 import { IoIosHeart } from "react-icons/io";
-import linesBackground from "./lines.png";
-import madeByImage from "./madeByImage.jpg";
+import linesBackground from "../images/lines.png";
+import madeByImage from "../images/madeByImage.jpg";
 import OtpInput from "react-otp-input";
 
 const compress = new Compress();
@@ -1264,7 +1264,7 @@ class App extends React.Component {
               xmlSpace="preserve"
             >
               <filter id="code" x="0%" y="0%" width="100%" height="100%">
-                <feImage xlinkHref="./favicon.png" />
+                <feImage xlinkHref={process.env.PUBLIC_URL + "./favicon.png"} />
               </filter>
               <circle
                 filter="url(#code)"
@@ -2641,7 +2641,7 @@ class App extends React.Component {
                             </strong>
                             <br />
                             This app will have your back when you wanna see
-                            the faces of our classmates or reconnect with
+                            the pics of our classmates or reconnect with
                             them, providing you with their pictures and
                             contact details.
                             <br />
