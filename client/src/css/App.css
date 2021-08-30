@@ -1178,25 +1178,10 @@ body {
   /* font-variant: small-caps; */
 }
 
-.navbar-brand:hover .brandIcon,
-.navbar-brand-in-details:hover .brandIcon {
-  animation: blinks 1s ease-in-out infinite;
-}
-
-@keyframes blinks {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
 .PageDownArrow {
   font-size: 20px;
   margin: 11px 0;
   color: white;
-  animation: blinks 1s ease-in-out infinite;
 }
 
 .stickyNav {
@@ -1541,4 +1526,12 @@ body {
 .madeByName {
   color: white;
   cursor: pointer;
+}
+
+.approve-buttons{
+  font-size: 13px;
+}
+
+.navbar-brand-about{
+  cursor: default;
 }
