@@ -124,7 +124,7 @@ var server = app.listen(port, () => console.log(`Listening on port ${port}`));
 server.setTimeout(300000);
 mongoose
   .connect(
-    "mongodb+srv://chandu:qwerty1000@cluster-5w20o.mongodb.net/cse2020?retryWrites=true&w=majority",
+    "mongodb+srv://TechUser_CSE2020:NotWeak@1WordEver@cluster-5w20o.mongodb.net/cse2020?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .catch((error) => {
